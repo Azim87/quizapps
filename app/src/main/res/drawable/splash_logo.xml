@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/colorSplash"/>
+    <item>
+        <bitmap
+            android:gravity="center_vertical|center_horizontal"
+            android:src="@drawable/ic_brain"/>
+    </item>
+</layer-list>

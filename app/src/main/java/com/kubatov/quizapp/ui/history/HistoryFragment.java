@@ -1,20 +1,11 @@
 package com.kubatov.quizapp.ui.history;
 
-import androidx.lifecycle.ViewModelProviders;
-
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.kubatov.quizapp.R;
+import com.kubatov.quizapp.core.CoreFragment;
 
-public class HistoryFragment extends Fragment {
+public class HistoryFragment extends CoreFragment {
 
     private HistoryViewModel mViewModel;
 
@@ -22,17 +13,14 @@ public class HistoryFragment extends Fragment {
         return new HistoryFragment();
     }
 
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.history_fragment, container, false);
+    protected int getLayoutId() {
+        return R.layout.history_fragment;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
-        // TODO: Use the ViewModel
-    }
+    protected void initViewAfterCreated(View view) {
 
+    }
 }

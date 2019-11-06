@@ -1,5 +1,8 @@
 package com.kubatov.quizapp.ui;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,9 +25,18 @@ public class MainActivity extends AppCompatActivity {
     public static final String MAIN = "main";
     public static final String HISTORY = "history";
     public static final String SETTINGS = "settings";
+    public static final int MAIN_FRAG = 0;
+    public static final int HISTORY_FRAG = 1;
+    public static final int SETTINGS_FRAG = 2;
 
-    @BindView(R.id.bottom_navigation) BottomNavigationView mBottomNavigationView;
-    @BindView(R.id.view_pager) ViewPager viewPager;
+    @BindView(R.id.bottom_navigation)
+    BottomNavigationView mBottomNavigationView;
+    @BindView(R.id.view_pager)
+    ViewPager viewPager;
+
+    public static void start(Context context) {
+        context.startActivity(new Intent(context, MainActivity.class));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,46 +57,37 @@ public class MainActivity extends AppCompatActivity {
         mBottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
                 case R.id.bottom_navigation_main:
-                    viewPager.setCurrentItem(0);
+                    viewPager.setCurrentItem(MAIN_FRAG);
                     setTitle(MAIN);
                     break;
                 case R.id.bottom_navigation_history:
-                    viewPager.setCurrentItem(1);
+                    viewPager.setCurrentItem(HISTORY_FRAG);
                     setTitle(HISTORY);
                     break;
                 case R.id.bottom_navigation_settings:
-                    viewPager.setCurrentItem(2);
+                    viewPager.setCurrentItem(SETTINGS_FRAG);
                     setTitle(SETTINGS);
                     break;
             }
-            return false;
+            return true;
         });
         onSlidePage();
     }
 
     private void onSlidePage() {
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
+        viewPager.addOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 mBottomNavigationView.getMenu().getItem(position).setChecked(true);
-
-                if (viewPager.getCurrentItem() == 0) {
+                if (viewPager.getCurrentItem() == MAIN_FRAG) {
                     setTitle(MAIN);
-                } else if (viewPager.getCurrentItem() == 1) {
+                } else if (viewPager.getCurrentItem() == HISTORY_FRAG) {
                     setTitle(HISTORY);
-                } else if (viewPager.getCurrentItem() == 2) {
+                } else if (viewPager.getCurrentItem() == SETTINGS_FRAG) {
                     setTitle(SETTINGS);
                 } else {
                     setTitle(getTitle());
                 }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
             }
         });
     }
