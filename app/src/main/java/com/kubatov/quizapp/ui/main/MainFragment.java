@@ -28,26 +28,23 @@ public class MainFragment extends CoreFragment {
         return new MainFragment();
     }
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.main_fragment;
-
     }
 
     @Override
     protected void initViewAfterCreated(View view) {
         ButterKnife.bind(this, view);
         initCategorySpinner();
-        initDiffiSpinner();
-
+        initDifficultSpinner();
     }
 
     private void initCategorySpinner() {
         MySpinner.show(category, spinnerCategory, getContext());
     }
 
-    private void initDiffiSpinner() {
+    private void initDifficultSpinner() {
         MySpinner.show(difficulty, spinnerDifficulty, getContext());
     }
 }

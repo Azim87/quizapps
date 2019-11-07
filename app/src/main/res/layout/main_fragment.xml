@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ui.MainActivity$MainFragment">
+    tools:context=".ui.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="40sp"
         android:layout_marginRight="40sp"
-
         android:orientation="vertical">
 
         <ImageView
@@ -45,10 +44,10 @@
 
         <SeekBar
             android:id="@+id/seek_bar_amount"
-            android:layout_below="@+id/quiz_amount"
-            android:layout_centerVertical="true"
             android:layout_width="340dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/quiz_amount"
+            android:layout_centerVertical="true" />
 
         <TextView
             android:id="@+id/text_view_category"
