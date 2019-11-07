@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorSplash">#fff</color>
+    <color name="colorOfStartButton">#fff</color>
+    <color name="colorOfStartButtonBackground">#6979F8</color>
+    <color name="colorOfSeekBar">#BE52F2</color>
 </resources>

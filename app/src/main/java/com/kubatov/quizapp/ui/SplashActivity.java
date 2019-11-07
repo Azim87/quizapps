@@ -34,5 +34,6 @@ public class SplashActivity extends AppCompatActivity {
 
     private void getMainActivity() {
         MainActivity.start(this);
+        finish();
     }
 }

@@ -7,11 +7,17 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorSecondary">@color/colorAccent</item>
-
     </style>
-
     <style name="Splash_screen" parent="Theme.AppCompat.Light">
         <item name="android:windowBackground">@drawable/splash_logo</item>
     </style>
-
+    <style name="StartButtonStyle" parent="Theme.AppCompat.Light">
+        <item name="android:background">@drawable/start_button_style</item>
+        <item name="android:layout_marginTop">100dp</item>
+        <item name="android:layout_below">@+id/spinner_difficulty</item>
+        <item name="android:textColor">@color/colorOfStartButton</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:text"></item>
+    </style>
 </resources>

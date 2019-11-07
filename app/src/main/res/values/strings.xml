@@ -3,4 +3,9 @@
     <string name="main_navigation">Main</string>
     <string name="history_navigation">history</string>
     <string name="settings_settings">settings</string>
+    <string name="start_button_text">START</string>
+    <string name="quiz_category">Category</string>
+    <string name="quiz_difficulty">Difficulty</string>
+    <string name="quiz_questions_amount">Questions amount:</string>
+    <string name="quiz_amount_10">10</string>
 </resources>
