@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Quiz"
+        android:text="@string/quiz"
         android:textSize="24dp" />
 
     <RelativeLayout
@@ -39,6 +40,7 @@
             android:text="@string/quiz_questions_amount" />
 
         <TextView
+            android:id="@+id/text_view_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/quiz_logo"
@@ -49,12 +51,18 @@
             android:text="@string/quiz_amount_10"
             android:textSize="20sp" />
 
-        <SeekBar
+        <io.apptik.widget.MultiSlider
             android:id="@+id/seek_bar_amount"
-            android:layout_width="340dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/quiz_amount"
-            android:layout_centerVertical="true" />
+            app:thumbColor="#BE52F2"
+            app:trackColor="#ECEBED"
+            app:rangeColor="#BE52F2"
+            app:scaleStep="1"
+            app:scaleMin="1"
+            app:scaleMax="50"
+            app:thumbNumber="1"/>
 
         <TextView
             android:id="@+id/text_view_category"
@@ -65,12 +73,12 @@
             android:layout_marginTop="13dp"
             android:text="@string/quiz_category" />
 
-        <Spinner
+        <org.angmarch.views.NiceSpinner
             android:id="@+id/spinner_category"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/text_view_category"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"/>
 
         <TextView
             android:id="@+id/text_view_difficulty"
@@ -81,7 +89,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/quiz_difficulty" />
 
-        <Spinner
+        <org.angmarch.views.NiceSpinner
             android:id="@+id/spinner_difficulty"
             android:layout_width="match_parent"
             android:layout_height="50dp"

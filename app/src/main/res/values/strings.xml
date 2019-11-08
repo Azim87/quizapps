@@ -8,4 +8,5 @@
     <string name="quiz_difficulty">Difficulty</string>
     <string name="quiz_questions_amount">Questions amount:</string>
     <string name="quiz_amount_10">10</string>
+    <string name="quiz">Quiz</string>
 </resources>
