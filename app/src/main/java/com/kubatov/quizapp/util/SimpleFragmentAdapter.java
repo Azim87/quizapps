@@ -1,4 +1,4 @@
-package com.kubatov.quizapp.ui;
+package com.kubatov.quizapp.util;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -8,10 +8,10 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuizFragmentAdapter extends FragmentPagerAdapter {
+public class SimpleFragmentAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragmentList = new ArrayList<>();
 
-    public QuizFragmentAdapter(@NonNull FragmentManager fm) {
+    public SimpleFragmentAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 

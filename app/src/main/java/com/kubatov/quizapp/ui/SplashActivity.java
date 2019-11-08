@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 
 import com.kubatov.quizapp.R;
+import com.kubatov.quizapp.ui.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
     private long mills = 2000;

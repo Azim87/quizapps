@@ -1,8 +1,7 @@
-package com.kubatov.quizapp.ui;
+package com.kubatov.quizapp.ui.main;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,7 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kubatov.quizapp.R;
-import com.kubatov.quizapp.ui.main.MainFragment;
+import com.kubatov.quizapp.util.SimpleFragmentAdapter;
 import com.kubatov.quizapp.ui.history.HistoryFragment;
 import com.kubatov.quizapp.ui.settings.SettingsFragment;
 
@@ -47,9 +46,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViewPager() {
-        QuizFragmentAdapter mQuizFragmentAdapter = new QuizFragmentAdapter(getSupportFragmentManager());
-        mQuizFragmentAdapter.setFragment(getFragment());
-        viewPager.setAdapter(mQuizFragmentAdapter);
+        SimpleFragmentAdapter mSimpleFragmentAdapter = new SimpleFragmentAdapter(getSupportFragmentManager());
+        mSimpleFragmentAdapter.setFragment(getFragment());
+        viewPager.setAdapter(mSimpleFragmentAdapter);
         setSlidePages();
     }
 
@@ -79,15 +78,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 mBottomNavigationView.getMenu().getItem(position).setChecked(true);
-                if (viewPager.getCurrentItem() == MAIN_FRAG) {
-                    setTitle(Quiz);
-                } else if (viewPager.getCurrentItem() == HISTORY_FRAG) {
-                    setTitle(HISTORY);
-                } else if (viewPager.getCurrentItem() == SETTINGS_FRAG) {
-                    setTitle(SETTINGS);
-                } else {
-                    setTitle(getTitle());
-                }
             }
         });
     }
