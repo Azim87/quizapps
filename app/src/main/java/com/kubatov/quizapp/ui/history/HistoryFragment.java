@@ -16,7 +16,7 @@ public class HistoryFragment extends CoreFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.history_fragment;
+        return R.layout.fragment_history;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.kubatov.quizapp.ui.main;
 
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.kubatov.quizapp.R;
@@ -30,7 +29,7 @@ public class MainFragment extends CoreFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.main_fragment;
+        return R.layout.fragment_quiz;
     }
 
     @Override

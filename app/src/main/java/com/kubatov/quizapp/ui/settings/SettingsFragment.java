@@ -15,7 +15,7 @@ public class SettingsFragment extends CoreFragment {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.settings_fragment;
+        return R.layout.fragment_settings;
     }
 
     @Override
