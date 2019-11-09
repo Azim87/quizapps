@@ -1,7 +1,6 @@
 package com.kubatov.quizapp.ui.main;
 
 import android.view.View;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.kubatov.quizapp.R;
@@ -10,7 +9,6 @@ import com.kubatov.quizapp.util.MySpinner;
 
 import org.angmarch.views.NiceSpinner;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +20,8 @@ import io.apptik.widget.MultiSlider;
 
 public class MainFragment extends CoreFragment {
 
+    private MainViewModel mViewModel;
+
     @BindView(R.id.spinner_category)
     NiceSpinner spinnerCategory;
     @BindView(R.id.spinner_difficulty)
@@ -30,9 +30,6 @@ public class MainFragment extends CoreFragment {
     MultiSlider mAmountSlider;
     @BindView(R.id.text_view_amount)
     TextView amountTextView;
-
-
-    private MainViewModel mViewModel;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -48,8 +45,6 @@ public class MainFragment extends CoreFragment {
         ButterKnife.bind(this, view);
         initCategorySpinner();
         initDifficultSpinner();
-
-
     }
 
     private void initCategorySpinner() {
@@ -66,6 +61,12 @@ public class MainFragment extends CoreFragment {
     }
 
     private void getValueFromSeekBar() {
-        mAmountSlider.setOnThumbValueChangeListener((multiSlider, thumb, thumbIndex, value) -> amountTextView.setText(String.valueOf(value)));
+        mAmountSlider.getThumb(0).setValue(10).setEnabled(true);
+        mAmountSlider.setOnThumbValueChangeListener(new MultiSlider.SimpleChangeListener() {
+            @Override
+            public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {
+                amountTextView.setText(String.valueOf(value));
+            }
+        });
     }
 }

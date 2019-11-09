@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.kubatov.quizapp.App;
 import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.util.SimpleFragmentAdapter;
 import com.kubatov.quizapp.ui.history.HistoryFragment;

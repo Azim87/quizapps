@@ -4,6 +4,6 @@
     <item>
         <bitmap
             android:gravity="center_vertical|center_horizontal"
-            android:src="@drawable/ic_brain"/>
+            android:src="@drawable/vector"/>
     </item>
 </layer-list>

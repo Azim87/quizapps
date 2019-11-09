@@ -11,8 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:fontFamily="@font/sf_text_semi_bold"
         android:text="@string/quiz"
-        android:textSize="24dp" />
+        android:textColor="#000"
+        android:textSize="28dp" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,9 +37,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/quiz_logo"
             android:layout_centerVertical="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="40dp"
             android:layout_marginBottom="15dp"
-            android:text="@string/quiz_questions_amount" />
+            android:fontFamily="@font/sf_text_semi_bold"
+            android:lineSpacingExtra="6sp"
+            android:text="@string/quiz_questions_amount"
+            android:textColor="#A9A9A9" />
 
         <TextView
             android:id="@+id/text_view_amount"
@@ -45,24 +50,26 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/quiz_logo"
             android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="40dp"
             android:layout_toEndOf="@+id/quiz_amount"
+            android:fontFamily="@font/sf_text_semi_bold"
+            android:lineSpacingExtra="2sp"
             android:text="@string/quiz_amount_10"
-            android:textSize="20sp" />
+            android:textColor="#3F3356" />
 
         <io.apptik.widget.MultiSlider
             android:id="@+id/seek_bar_amount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/quiz_amount"
-            app:thumbColor="#BE52F2"
-            app:trackColor="#ECEBED"
             app:rangeColor="#BE52F2"
-            app:scaleStep="1"
-            app:scaleMin="1"
             app:scaleMax="50"
-            app:thumbNumber="1"/>
+            app:scaleMin="1"
+            app:scaleStep="1"
+            app:thumbColor="#BE52F2"
+            app:thumbNumber="1"
+            app:trackColor="#ECEBED" />
 
         <TextView
             android:id="@+id/text_view_category"
@@ -71,14 +78,16 @@
             android:layout_below="@+id/seek_bar_amount"
             android:layout_centerVertical="true"
             android:layout_marginTop="13dp"
-            android:text="@string/quiz_category" />
+            android:fontFamily="@font/sf_text_semi_bold"
+            android:text="@string/quiz_category"
+            android:textColor="#A9A9A9" />
 
         <org.angmarch.views.NiceSpinner
             android:id="@+id/spinner_category"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_below="@+id/text_view_category"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp" />
 
         <TextView
             android:id="@+id/text_view_difficulty"
@@ -87,7 +96,9 @@
             android:layout_below="@+id/spinner_category"
             android:layout_centerVertical="true"
             android:layout_marginTop="10dp"
-            android:text="@string/quiz_difficulty" />
+            android:fontFamily="@font/sf_text_semi_bold"
+            android:text="@string/quiz_difficulty"
+            android:textColor="#A9A9A9" />
 
         <org.angmarch.views.NiceSpinner
             android:id="@+id/spinner_difficulty"
@@ -102,6 +113,8 @@
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="77dp"
-            android:text="@string/start_button_text" />
+            android:fontFamily="@font/sf_text_semi_bold"
+            android:text="@string/start_button_text"
+            android:textSize="18sp" />
     </RelativeLayout>
 </FrameLayout>

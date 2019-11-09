@@ -2,9 +2,10 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#7E5866</color>
+    <color name="colorAccent">#ECEBED</color>
     <color name="colorSplash">#fff</color>
     <color name="colorOfStartButton">#fff</color>
     <color name="colorOfStartButtonBackground">#6979F8</color>
     <color name="colorOfSeekBar">#584F5F</color>
+    <color name="colorOfBottomNavIconSelected">#BE52F2</color>
 </resources>
