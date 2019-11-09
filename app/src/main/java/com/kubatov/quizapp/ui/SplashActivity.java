@@ -33,7 +33,7 @@ public class SplashActivity extends AppCompatActivity {
         }.start();
     }
 
-    private void getMainActivity(){
+    private void getMainActivity() {
         MainActivity.start(this);
         finish();
     }
