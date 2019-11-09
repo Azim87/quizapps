@@ -1,10 +1,12 @@
 package com.kubatov.quizapp.ui.main;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.core.CoreFragment;
+import com.kubatov.quizapp.ui.quiz.QuizActivity;
 import com.kubatov.quizapp.util.MySpinner;
 
 import org.angmarch.views.NiceSpinner;
@@ -18,7 +20,12 @@ import butterknife.ButterKnife;
 import io.apptik.widget.MultiSlider;
 
 
-public class MainFragment extends CoreFragment {
+public class MainFragment extends CoreFragment implements View.OnClickListener {
+    private static final String ANY_DIFFICULTY = "ANY DIFFICULTY";
+    private static final String ANY_CATEGORY = "ANY CATEGORY";
+    private static final String EASY = "EASY";
+    private static final String MEDIUM = "MEDIUM";
+    private static final String HARD = "HARD";
 
     private MainViewModel mViewModel;
 
@@ -30,6 +37,8 @@ public class MainFragment extends CoreFragment {
     MultiSlider mAmountSlider;
     @BindView(R.id.text_view_amount)
     TextView amountTextView;
+    @BindView(R.id.quiz_start_button)
+    Button quizStartButton;
 
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -45,17 +54,43 @@ public class MainFragment extends CoreFragment {
         ButterKnife.bind(this, view);
         initCategorySpinner();
         initDifficultSpinner();
+        quizStartButton.setOnClickListener(this);
     }
 
     private void initCategorySpinner() {
-        List<String> category = new LinkedList<>(Arrays.asList("ALL"));
-        category.add("");
+        List<String> category = new LinkedList<>(Arrays.asList(ANY_CATEGORY));
+        category.add("ANIMALS");
+        category.add("ART");
+        category.add("CELEBRITIES");
+        category.add("ENTERTAINMENT: BOARD GAMES");
+        category.add("ENTERTAINMENT: BOOKS");
+        category.add("ENTERTAINMENT: CARTOON & ANIMATIONS");
+        category.add("ENTERTAINMENT: COMICS");
+        category.add("ENTERTAINMENT: FILM");
+        category.add("ENTERTAINMENT: JAPANESE ANIME & MANGA");
+        category.add("GENERAL KNOWLEDGE");
+        category.add("ENTERTAINMENT: MUSIC");
+        category.add("ENTERTAINMENT: MUSICALS & THEATRES");
+        category.add("ENTERTAINMENT: TELEVISION");
+        category.add("ENTERTAINMENT: VIDEO GAMES");
+        category.add("GEOGRAPHY");
+        category.add("HISTORY");
+        category.add("MYTHOLOGY");
+        category.add("POLITICS");
+        category.add("SCIENCE & NATURE");
+        category.add("SCIENCE: COMPUTERS");
+        category.add("SCIENCE: MATHEMATICS");
+        category.add("SCIENCE: GADGETS");
+        category.add("SPORTS");
+        category.add("VEHICLES");
         MySpinner.show(category, spinnerCategory);
     }
 
     private void initDifficultSpinner() {
-        List<String> difficulty = new LinkedList<>(Arrays.asList("ALL"));
-        difficulty.add("");
+        List<String> difficulty = new LinkedList<>(Arrays.asList(ANY_DIFFICULTY));
+        difficulty.add(EASY);
+        difficulty.add(MEDIUM);
+        difficulty.add(HARD);
         MySpinner.show(difficulty, spinnerDifficulty);
         getValueFromSeekBar();
     }
@@ -68,5 +103,10 @@ public class MainFragment extends CoreFragment {
                 amountTextView.setText(String.valueOf(value));
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        QuizActivity.start(getContext());
     }
 }

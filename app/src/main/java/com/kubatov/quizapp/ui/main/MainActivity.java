@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchUIUtil;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -58,15 +59,12 @@ public class MainActivity extends AppCompatActivity {
             switch (menuItem.getItemId()) {
                 case R.id.bottom_navigation_main:
                     viewPager.setCurrentItem(MAIN_FRAG);
-                    setTitle(Quiz);
                     break;
                 case R.id.bottom_navigation_history:
                     viewPager.setCurrentItem(HISTORY_FRAG);
-                    setTitle(HISTORY);
                     break;
                 case R.id.bottom_navigation_settings:
                     viewPager.setCurrentItem(SETTINGS_FRAG);
-                    setTitle(SETTINGS);
                     break;
             }
             return true;
