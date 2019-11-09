@@ -7,6 +7,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColorSecondary">@color/colorAccent</item>
         <item name="android:windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="Splash_screen" parent="Theme.AppCompat.Light.NoActionBar">

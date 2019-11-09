@@ -9,7 +9,7 @@ import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.ui.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
-    private long mills = 2000;
+    private long mills = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
