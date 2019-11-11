@@ -3,7 +3,7 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#FFFFFF</color>
-    <color name="colorSplash">#fff</color>
+    <color name="colorSplash">#FFFFFF</color>
     <color name="colorOfStartButton">#fff</color>
     <color name="colorOfStartButtonBackground">#6979F8</color>
     <color name="colorOfBottomNavIconSelected">#BE52F2</color>
@@ -11,4 +11,6 @@
     <color name="colorOfSeekBarTrack">#ECEBED</color>
     <color name="colorOfTextViewDifficulty">#A9A9A9</color>
     <color name="colorOfTextViewQuiz">#000</color>
+    <color name="colorOfColorSecondary">#ECEBED</color>
+    <color name="colorOfStatusBar">#FFFFFF</color>
 </resources>

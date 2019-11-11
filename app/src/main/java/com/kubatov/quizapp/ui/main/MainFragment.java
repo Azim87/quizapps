@@ -1,8 +1,11 @@
 package com.kubatov.quizapp.ui.main;
 
+import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.core.CoreFragment;
@@ -26,6 +29,9 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
     private static final String EASY = "EASY";
     private static final String MEDIUM = "MEDIUM";
     private static final String HARD = "HARD";
+    public static final String SEEK_BAR = "seekbar";
+    public static final String DIFF_CATEGORY = "category";
+    public static final String DIFF_DIFFICULT = "difficult";
 
     private MainViewModel mViewModel;
 
@@ -106,14 +112,39 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
         setSeekBar();
     }
 
-    private void setSeekBar(){
+    private void setSeekBar() {
         mAmountSlider.setMin(5);
         mAmountSlider.setMax(50);
         mAmountSlider.setStep(1);
     }
 
+    private void validateForEmpty() {
+        if (mAmountSlider.getThumb(0).getValue() >= 10 ||
+                spinnerCategory.getSelectedIndex() == 0 ||
+                spinnerDifficulty.getSelectedIndex() == 0) {
+            Toast.makeText(getContext(), "Select some questions!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
+
+    private void sendFakeDataToQuizActivity() {
+        validateForEmpty();
+        int seekBarCurrentValue = mAmountSlider.getThumb(0).getValue();
+        String category = spinnerCategory.getSelectedItem().toString();
+        String difficulty = spinnerDifficulty.getSelectedItem().toString();
+        Intent fakeIntent = new Intent(getContext(), QuizActivity.class);
+        fakeIntent.putExtra(SEEK_BAR, seekBarCurrentValue);
+        fakeIntent.putExtra(DIFF_CATEGORY, category);
+        fakeIntent.putExtra(DIFF_DIFFICULT, difficulty);
+        getActivity().startActivity(fakeIntent);
+
+        Log.d("ololo", "sendFakeDataToQuizActivity: " + mAmountSlider.getThumb(0).getValue());
+        Log.d("ololo", "sendFakeDataToQuizActivity: " + spinnerCategory.getSelectedItem().toString());
+        Log.d("ololo", "sendFakeDataToQuizActivity: " + spinnerDifficulty.getSelectedItem().toString());
+    }
+
     @Override
     public void onClick(View v) {
-        QuizActivity.start(getContext());
+        sendFakeDataToQuizActivity();
     }
 }
