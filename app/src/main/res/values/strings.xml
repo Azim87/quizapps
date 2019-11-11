@@ -9,4 +9,9 @@
     <string name="quiz_questions_amount">Questions amount:</string>
     <string name="quiz_amount_10">10</string>
     <string name="quiz">Quiz</string>
+    <string name="history">History</string>
+    <string name="category">Category: Mixed</string>
+    <string name="correct_answers">Correct answers: 8/10</string>
+    <string name="difficulty_easy">Difficulty: Easy</string>
+    <string name="history_time">12 may 2019 20:32</string>
 </resources>
