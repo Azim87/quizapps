@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,82 +11,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/sf_text_semi_bold"
         android:text="@string/history"
         android:textColor="@color/colorOfTextViewQuiz"
-        android:textSize="28sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="28sp" />
 
-    <TextView
-        android:id="@+id/rectangle_container"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/history_recycle_view"
         android:layout_width="match_parent"
-        android:layout_height="105dp"
-        android:layout_marginTop="29dp"
-        android:elevation ="20dp"
-        android:shadowColor="@color/colorOfTextViewDifficulty"
-        android:shadowRadius="10"
-        app:layout_constraintTop_toBottomOf="@+id/history" />
-
-    <TextView
-        android:id="@+id/category_text_view_history"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/history"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/sf_text_semi_bold"
-        android:text="@string/category"
-        android:textColor="@color/colorOfTextViewQuiz"
-        android:textSize="19sp"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_container"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_container" />
-
-    <TextView
-        android:id="@+id/correct_answers_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="13.2dp"
-        android:fontFamily="@font/sf_pro_display_light"
-        android:text="@string/correct_answers"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_container"
-        app:layout_constraintTop_toBottomOf="@+id/category_text_view_history" />
-
-    <TextView
-        android:id="@+id/difficulty_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="9dp"
-        android:fontFamily="@font/sf_pro_display_light"
-        android:text="@string/difficulty_easy"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="@+id/rectangle_container"
-        app:layout_constraintTop_toBottomOf="@+id/correct_answers_text_view" />
-
-    <TextView
-        android:id="@+id/history_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="85dp"
-        android:layout_marginEnd="18dp"
-        android:textSize="11sp"
-        android:text="@string/history_time"
-        android:fontFamily="@font/sf_pro_display_light"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_container"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_container" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/ic_more_horizonatl"
-        app:layout_constraintBottom_toBottomOf="@+id/category_text_view_history"
-        app:layout_constraintEnd_toEndOf="@+id/rectangle_container"
-        app:layout_constraintTop_toTopOf="@+id/category_text_view_history"
-        tools:ignore="ContentDescription" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/history" />
+</RelativeLayout>
