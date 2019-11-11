@@ -23,9 +23,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String Quiz = "Quiz";
-    public static final String HISTORY = "History";
-    public static final String SETTINGS = "Settings";
     public static final int MAIN_FRAG = 0;
     public static final int HISTORY_FRAG = 1;
     public static final int SETTINGS_FRAG = 2;
@@ -45,13 +42,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initViewPager();
+        setSlidePages();
+        onSlidePage();
     }
 
     private void initViewPager() {
         SimpleFragmentAdapter mSimpleFragmentAdapter = new SimpleFragmentAdapter(getSupportFragmentManager());
         mSimpleFragmentAdapter.setFragment(getFragment());
         viewPager.setAdapter(mSimpleFragmentAdapter);
-        setSlidePages();
     }
 
     private void setSlidePages() {
@@ -66,10 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.bottom_navigation_settings:
                     viewPager.setCurrentItem(SETTINGS_FRAG);
                     break;
+                default:
             }
             return true;
         });
-        onSlidePage();
     }
 
     private void onSlidePage() {

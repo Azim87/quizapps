@@ -1,6 +1,6 @@
 package com.kubatov.quizapp.data.repository;
 
-import com.kubatov.quizapp.data.pojo.QuizQuestions;
+import com.kubatov.quizapp.model.QuizQuestions;
 
 import java.util.List;
 

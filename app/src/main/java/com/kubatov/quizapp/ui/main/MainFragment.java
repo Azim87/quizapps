@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.core.CoreFragment;
 import com.kubatov.quizapp.ui.quiz.QuizActivity;
-import com.kubatov.quizapp.util.MySpinner;
+import com.kubatov.quizapp.util.ViewHelperUtil;
 
 import org.angmarch.views.NiceSpinner;
 
@@ -83,7 +83,7 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
         category.add("SCIENCE: GADGETS");
         category.add("SPORTS");
         category.add("VEHICLES");
-        MySpinner.show(category, spinnerCategory);
+        ViewHelperUtil.show(category, spinnerCategory);
     }
 
     private void initDifficultSpinner() {
@@ -91,7 +91,7 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
         difficulty.add(EASY);
         difficulty.add(MEDIUM);
         difficulty.add(HARD);
-        MySpinner.show(difficulty, spinnerDifficulty);
+        ViewHelperUtil.show(difficulty, spinnerDifficulty);
         getValueFromSeekBar();
     }
 
@@ -103,6 +103,13 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
                 amountTextView.setText(String.valueOf(value));
             }
         });
+        setSeekBar();
+    }
+
+    private void setSeekBar(){
+        mAmountSlider.setMin(5);
+        mAmountSlider.setMax(50);
+        mAmountSlider.setStep(1);
     }
 
     @Override
