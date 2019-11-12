@@ -11,6 +11,5 @@
     <color name="colorOfSeekBarTrack">#ECEBED</color>
     <color name="colorOfTextViewDifficulty">#A9A9A9</color>
     <color name="colorOfTextViewQuiz">#000</color>
-    <color name="colorOfColorSecondary">#ECEBED</color>
     <color name="colorOfStatusBar">#FFFFFF</color>
 </resources>

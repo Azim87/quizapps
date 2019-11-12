@@ -32,7 +32,6 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
     public static final String SEEK_BAR = "seekbar";
     public static final String DIFF_CATEGORY = "category";
     public static final String DIFF_DIFFICULT = "difficult";
-
     private MainViewModel mViewModel;
 
     @BindView(R.id.spinner_category)
@@ -119,10 +118,10 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
     }
 
     private void sendFakeDataToQuizActivity() {
-        if (mAmountSlider.getThumb(0).getValue() > 5 ||
-                spinnerCategory.getSelectedIndex() == 0 ||
+        if (spinnerCategory.getSelectedIndex() == 0 ||
                 spinnerDifficulty.getSelectedIndex() == 0) {
-            Toast.makeText(getContext(), "Select some questions!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "Хватить нажимать на меня!" + "\n" +
+                    "Пиздец больно мне!", Toast.LENGTH_LONG).show();
             return;
         }
         int seekBarCurrentValue = mAmountSlider.getThumb(0).getValue();
@@ -134,10 +133,6 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
         fakeIntent.putExtra(DIFF_CATEGORY, category);
         fakeIntent.putExtra(DIFF_DIFFICULT, difficulty);
         getActivity().startActivity(fakeIntent);
-
-        Log.d("ololo", "sendFakeDataToQuizActivity: " + mAmountSlider.getThumb(0).getValue());
-        Log.d("ololo", "sendFakeDataToQuizActivity: " + spinnerCategory.getSelectedItem().toString());
-        Log.d("ololo", "sendFakeDataToQuizActivity: " + spinnerDifficulty.getSelectedItem().toString());
     }
 
     @Override

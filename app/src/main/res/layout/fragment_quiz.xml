@@ -82,9 +82,10 @@
         <org.angmarch.views.NiceSpinner
             android:id="@+id/spinner_category"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_category"
             android:layout_marginTop="5dp"
+            android:elevation="6dp"
             app:popupTextAlignment="start" />
 
         <TextView
@@ -101,14 +102,15 @@
         <org.angmarch.views.NiceSpinner
             android:id="@+id/spinner_difficulty"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/text_view_difficulty"
             android:layout_marginTop="5dp"
+            android:elevation="6dp"
             app:popupTextAlignment="start" />
 
         <Button
-            style="@style/StartButtonStyle"
             android:id="@+id/quiz_start_button"
+            style="@style/StartButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="77dp"
