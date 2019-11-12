@@ -15,4 +15,8 @@
     <string name="difficulty_easy">Difficulty: Easy</string>
     <string name="history_time">12 may 2019 20:32</string>
     <string name="settings_fragment">Settings</string>
+    <string name="share_app">Share this app</string>
+    <string name="rate_us">Rate us</string>
+    <string name="clear_history">Clear history</string>
+    <string name="leave_feedback">Leave feedback</string>
 </resources>
