@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".ui.main.MainActivity">
 
     <TextView
         android:id="@+id/history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="20dp"
         android:fontFamily="@font/sf_text_semi_bold"
