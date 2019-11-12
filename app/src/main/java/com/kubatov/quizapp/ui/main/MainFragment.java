@@ -118,20 +118,17 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
         mAmountSlider.setStep(1);
     }
 
-    private void validateForEmpty() {
-        if (mAmountSlider.getThumb(0).getValue() >= 10 ||
+    private void sendFakeDataToQuizActivity() {
+        if (mAmountSlider.getThumb(0).getValue() > 5 ||
                 spinnerCategory.getSelectedIndex() == 0 ||
                 spinnerDifficulty.getSelectedIndex() == 0) {
             Toast.makeText(getContext(), "Select some questions!", Toast.LENGTH_SHORT).show();
             return;
         }
-    }
-
-    private void sendFakeDataToQuizActivity() {
-        validateForEmpty();
         int seekBarCurrentValue = mAmountSlider.getThumb(0).getValue();
         String category = spinnerCategory.getSelectedItem().toString();
         String difficulty = spinnerDifficulty.getSelectedItem().toString();
+
         Intent fakeIntent = new Intent(getContext(), QuizActivity.class);
         fakeIntent.putExtra(SEEK_BAR, seekBarCurrentValue);
         fakeIntent.putExtra(DIFF_CATEGORY, category);

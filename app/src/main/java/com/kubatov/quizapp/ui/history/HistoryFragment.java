@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.core.CoreFragment;
 import com.kubatov.quizapp.model.HistoryModel;
-import com.kubatov.quizapp.ui.main.MainActivity;
 
 import java.util.ArrayList;
 
