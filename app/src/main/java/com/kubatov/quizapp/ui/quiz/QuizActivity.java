@@ -16,7 +16,7 @@ import static com.kubatov.quizapp.ui.main.MainFragment.SEEK_BAR;
 public class QuizActivity extends AppCompatActivity {
     private QuizViewModel mQuizViewModel;
 
-    public static void start(Context context, String seekBarValue, String categoryValue, String difficultValue){
+    public static void start(Context context, int seekBarValue, String categoryValue, String difficultValue) {
         Intent fakeIntent = new Intent(context, QuizActivity.class);
         fakeIntent.putExtra(SEEK_BAR, seekBarValue);
         fakeIntent.putExtra(DIFF_CATEGORY, categoryValue);

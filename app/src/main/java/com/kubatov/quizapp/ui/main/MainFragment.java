@@ -1,5 +1,7 @@
 package com.kubatov.quizapp.ui.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.View;
 import android.widget.Button;
@@ -102,11 +104,9 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
     }
 
     private void getValueFromSeekBar() {
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             mSeekBar.setMin(5);
         }
-
         mSeekBar.setOnSeekBarChangeListener(new SimpleSeekBarChange() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -118,9 +118,8 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        QuizActivity.start(
-                getContext(),
-                String.valueOf(mSeekBar.getProgress()),
+        QuizActivity.start(getContext(),
+                mSeekBar.getProgress(),
                 spinnerCategory.getSelectedItem().toString(),
                 spinnerDifficulty.getSelectedItem().toString());
     }

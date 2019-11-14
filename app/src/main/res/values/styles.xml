@@ -5,8 +5,8 @@
         <item name="colorAccent">@color/colorOfBottomNavIconSelected</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorPrimary">@color/colorOfBottomNavIconSelected</item>
-        <item name="android:statusBarColor" tools:targetApi="m">#FFF</item>
         <item name="android:windowBackground">@color/colorAccent</item>
+        <item name="android:statusBarColor" tools:targetApi="m">#FFF</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
