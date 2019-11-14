@@ -1,14 +1,16 @@
 package com.kubatov.quizapp.ui.main;
 
-import android.content.Intent;
-import android.util.Log;
+import android.os.Build;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.widget.AppCompatSeekBar;
 
 import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.core.CoreFragment;
+import com.kubatov.quizapp.core.SimpleSeekBarChange;
 import com.kubatov.quizapp.ui.quiz.QuizActivity;
 import com.kubatov.quizapp.util.ViewHelperUtil;
 
@@ -20,7 +22,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.apptik.widget.MultiSlider;
 
 
 public class MainFragment extends CoreFragment implements View.OnClickListener {
@@ -39,7 +40,7 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
     @BindView(R.id.spinner_difficulty)
     NiceSpinner spinnerDifficulty;
     @BindView(R.id.seek_bar_amount)
-    MultiSlider mAmountSlider;
+    AppCompatSeekBar mSeekBar;
     @BindView(R.id.text_view_amount)
     TextView amountTextView;
     @BindView(R.id.quiz_start_button)
@@ -101,42 +102,26 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
     }
 
     private void getValueFromSeekBar() {
-        mAmountSlider.getThumb(0).setValue(10).setEnabled(true);
-        mAmountSlider.setOnThumbValueChangeListener(new MultiSlider.SimpleChangeListener() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            mSeekBar.setMin(5);
+        }
+
+        mSeekBar.setOnSeekBarChangeListener(new SimpleSeekBarChange() {
             @Override
-            public void onValueChanged(MultiSlider multiSlider, MultiSlider.Thumb thumb, int thumbIndex, int value) {
-                amountTextView.setText(String.valueOf(value));
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                super.onProgressChanged(seekBar, progress, fromUser);
+                amountTextView.setText(String.valueOf(progress));
             }
         });
-        setSeekBar();
-    }
-
-    private void setSeekBar() {
-        mAmountSlider.setMin(5);
-        mAmountSlider.setMax(50);
-        mAmountSlider.setStep(1);
-    }
-
-    private void sendFakeDataToQuizActivity() {
-        if (spinnerCategory.getSelectedIndex() == 0 ||
-                spinnerDifficulty.getSelectedIndex() == 0) {
-            Toast.makeText(getContext(), "Хватить нажимать на меня!" + "\n" +
-                    "Пиздец больно мне!", Toast.LENGTH_LONG).show();
-            return;
-        }
-        int seekBarCurrentValue = mAmountSlider.getThumb(0).getValue();
-        String category = spinnerCategory.getSelectedItem().toString();
-        String difficulty = spinnerDifficulty.getSelectedItem().toString();
-
-        Intent fakeIntent = new Intent(getContext(), QuizActivity.class);
-        fakeIntent.putExtra(SEEK_BAR, seekBarCurrentValue);
-        fakeIntent.putExtra(DIFF_CATEGORY, category);
-        fakeIntent.putExtra(DIFF_DIFFICULT, difficulty);
-        getActivity().startActivity(fakeIntent);
     }
 
     @Override
     public void onClick(View v) {
-        sendFakeDataToQuizActivity();
+        QuizActivity.start(
+                getContext(),
+                String.valueOf(mSeekBar.getProgress()),
+                spinnerCategory.getSelectedItem().toString(),
+                spinnerDifficulty.getSelectedItem().toString());
     }
 }

@@ -1,121 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp"
+    android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
 
     <TextView
+        android:id="@+id/quiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="23dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/sf_pro_text_bold"
         android:text="@string/quiz"
         android:textColor="@color/colorOfTextViewQuiz"
-        android:textSize="28dp" />
+        android:textSize="28sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
+
+    <ImageView
+        android:id="@+id/quiz_logo"
+        android:layout_width="65dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:src="@drawable/lc_quiz_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quiz" />
+
+    <TextView
+        android:id="@+id/quiz_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="43.76dp"
+        android:fontFamily="@font/sf_text_semi_bold"
+        android:lineSpacingExtra="6sp"
+        android:text="@string/quiz_questions_amount"
+        android:textColor="@color/colorOfTextViewDifficulty"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/quiz"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_logo" />
+
+    <TextView
+        android:id="@+id/text_view_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:fontFamily="@font/sf_text_semi_bold"
+        android:lineSpacingExtra="2sp"
+        android:text="@string/quiz_amount_10"
+        android:textColor="#3F3356"
+        app:layout_constraintStart_toEndOf="@+id/quiz_amount"
+        app:layout_constraintTop_toTopOf="@+id/quiz_amount" />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seek_bar_amount"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="50dp"
+        android:max="50"
+        android:progress="10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_amount" />
+
+    <TextView
+        android:id="@+id/text_view_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/sf_text_semi_bold"
+        android:text="@string/quiz_category"
+        android:textColor="@color/colorOfTextViewDifficulty"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/quiz_amount"
+        app:layout_constraintTop_toBottomOf="@+id/seek_bar_amount" />
+
+    <org.angmarch.views.NiceSpinner
+        android:id="@+id/spinner_category"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="40sp"
-        android:layout_marginRight="40sp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="64dp"
+        android:elevation="6dp"
+        app:layout_constraintStart_toStartOf="@+id/seek_bar_amount"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_category"
+        app:popupTextAlignment="start" />
 
-        <ImageView
-            android:id="@+id/quiz_logo"
-            android:layout_width="65dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
-            android:src="@drawable/lc_quiz_logo" />
+    <TextView
+        android:id="@+id/text_view_difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/sf_text_semi_bold"
+        android:text="@string/quiz_difficulty"
+        android:textColor="@color/colorOfTextViewDifficulty"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/quiz_amount"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
 
-        <TextView
-            android:id="@+id/quiz_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/quiz_logo"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="15dp"
-            android:fontFamily="@font/sf_text_semi_bold"
-            android:lineSpacingExtra="6sp"
-            android:text="@string/quiz_questions_amount"
-            android:textColor="@color/colorOfTextViewDifficulty" />
+    <org.angmarch.views.NiceSpinner
+        android:id="@+id/spinner_difficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:elevation="6dp"
+        app:layout_constraintEnd_toEndOf="@+id/seek_bar_amount"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="@+id/seek_bar_amount"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_difficulty"
+        app:popupTextAlignment="start" />
 
-        <TextView
-            android:id="@+id/text_view_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/quiz_logo"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="40dp"
-            android:layout_toEndOf="@+id/quiz_amount"
-            android:fontFamily="@font/sf_text_semi_bold"
-            android:lineSpacingExtra="2sp"
-            android:text="@string/quiz_amount_10"
-            android:textColor="#3F3356" />
-
-        <io.apptik.widget.MultiSlider
-            android:id="@+id/seek_bar_amount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/quiz_amount"
-            app:rangeColor="@color/colorOfSeekBar"
-            app:thumbColor="@color/colorOfSeekBar"
-            app:thumbNumber="1"
-            app:trackColor="@color/colorOfSeekBarTrack" />
-
-        <TextView
-            android:id="@+id/text_view_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/seek_bar_amount"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="13dp"
-            android:fontFamily="@font/sf_text_semi_bold"
-            android:text="@string/quiz_category"
-            android:textColor="@color/colorOfTextViewDifficulty" />
-
-        <org.angmarch.views.NiceSpinner
-            android:id="@+id/spinner_category"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view_category"
-            android:layout_marginTop="5dp"
-            android:elevation="2dp"
-            app:popupTextAlignment="start" />
-
-        <TextView
-            android:id="@+id/text_view_difficulty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/spinner_category"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/sf_text_semi_bold"
-            android:text="@string/quiz_difficulty"
-            android:textColor="@color/colorOfTextViewDifficulty" />
-
-        <org.angmarch.views.NiceSpinner
-            android:id="@+id/spinner_difficulty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/text_view_difficulty"
-            android:layout_marginTop="5dp"
-            android:elevation="2dp"
-            app:popupTextAlignment="start" />
-
-        <Button
-            android:id="@+id/quiz_start_button"
-            style="@style/StartButtonStyle"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="77dp"
-            android:fontFamily="@font/sf_text_semi_bold"
-            android:text="@string/start_button_text"
-            android:textSize="18sp" />
-    </RelativeLayout>
-</FrameLayout>
+    <Button
+        android:id="@+id/quiz_start_button"
+        style="@style/StartButtonStyle"
+        android:layout_width="200dp"
+        android:layout_height="55dp"
+        android:fontFamily="@font/sf_text_semi_bold"
+        android:text="@string/start_button_text"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_difficulty"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/spinner_difficulty"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_difficulty" />
+</androidx.constraintlayout.widget.ConstraintLayout>

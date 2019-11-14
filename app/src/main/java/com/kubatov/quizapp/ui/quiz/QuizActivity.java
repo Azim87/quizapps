@@ -1,8 +1,8 @@
 package com.kubatov.quizapp.ui.quiz;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -16,6 +16,14 @@ import static com.kubatov.quizapp.ui.main.MainFragment.SEEK_BAR;
 public class QuizActivity extends AppCompatActivity {
     private QuizViewModel mQuizViewModel;
 
+    public static void start(Context context, String seekBarValue, String categoryValue, String difficultValue){
+        Intent fakeIntent = new Intent(context, QuizActivity.class);
+        fakeIntent.putExtra(SEEK_BAR, seekBarValue);
+        fakeIntent.putExtra(DIFF_CATEGORY, categoryValue);
+        fakeIntent.putExtra(DIFF_DIFFICULT, difficultValue);
+        context.startActivity(fakeIntent);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +36,6 @@ public class QuizActivity extends AppCompatActivity {
         int seekBar = fakeIntent.getIntExtra(SEEK_BAR, 0);
         String category = fakeIntent.getStringExtra(DIFF_CATEGORY);
         String difficulty = fakeIntent.getStringExtra(DIFF_DIFFICULT);
-        Log.d("ololo", "onActivityResult: " + seekBar + " " + category + " " + difficulty);
         Toast.makeText(this, "onActivityResult: " + seekBar + "\n" + " " + category + " " + difficulty, Toast.LENGTH_SHORT).show();
     }
 }

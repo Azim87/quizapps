@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorOfBottomNavIconSelected</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorPrimary">@color/colorOfBottomNavIconSelected</item>
         <item name="android:statusBarColor" tools:targetApi="m">#FFF</item>
@@ -22,7 +22,7 @@
 
     <style name="StartButtonStyle">
         <item name="android:background">@drawable/start_button_style</item>
-        <item name="android:layout_marginTop">100dp</item>
+        <item name="android:layout_marginTop">64dp</item>
         <item name="android:layout_below">@+id/spinner_difficulty</item>
         <item name="android:textColor">@color/colorOfStartButton</item>
         <item name="android:layout_marginLeft">20dp</item>

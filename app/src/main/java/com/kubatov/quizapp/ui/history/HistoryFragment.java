@@ -1,17 +1,12 @@
 package com.kubatov.quizapp.ui.history;
 
 import android.view.View;
-import android.widget.FrameLayout;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.core.CoreFragment;
 import com.kubatov.quizapp.model.HistoryModel;
-
 import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
