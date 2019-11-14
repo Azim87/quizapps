@@ -1,4 +1,4 @@
-package com.kubatov.quizapp.ui.history;
+package com.kubatov.quizapp.presentation.history;
 
 import android.view.View;
 import androidx.recyclerview.widget.LinearLayoutManager;

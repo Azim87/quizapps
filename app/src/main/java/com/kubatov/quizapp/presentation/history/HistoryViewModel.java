@@ -1,4 +1,4 @@
-package com.kubatov.quizapp.ui.history;
+package com.kubatov.quizapp.presentation.history;
 
 import androidx.lifecycle.ViewModel;
 

@@ -13,15 +13,15 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".presentation.splash.SplashActivity"
             android:theme="@style/Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.result.ResultActivity" />
-        <activity android:name=".ui.quiz.QuizActivity" />
-        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".presentation.result.ResultActivity" />
+        <activity android:name=".presentation.quiz.QuizActivity" />
+        <activity android:name=".presentation.main.MainActivity" />
     </application>
 </manifest>

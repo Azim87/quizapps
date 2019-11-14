@@ -1,17 +1,12 @@
-package com.kubatov.quizapp.ui;
+package com.kubatov.quizapp.presentation.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 
 import com.kubatov.quizapp.R;
-import com.kubatov.quizapp.ui.main.MainActivity;
-
-import java.util.ConcurrentModificationException;
+import com.kubatov.quizapp.presentation.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
     private long mills = 1000;

@@ -1,4 +1,4 @@
-package com.kubatov.quizapp.ui.main;
+package com.kubatov.quizapp.presentation.main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,15 +6,13 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.ItemTouchUIUtil;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.kubatov.quizapp.App;
 import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.util.SimpleFragmentAdapter;
-import com.kubatov.quizapp.ui.history.HistoryFragment;
-import com.kubatov.quizapp.ui.settings.SettingsFragment;
+import com.kubatov.quizapp.presentation.history.HistoryFragment;
+import com.kubatov.quizapp.presentation.settings.SettingsFragment;
 
 import java.util.ArrayList;
 import java.util.List;

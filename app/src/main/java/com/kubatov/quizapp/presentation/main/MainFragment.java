@@ -1,7 +1,5 @@
-package com.kubatov.quizapp.ui.main;
+package com.kubatov.quizapp.presentation.main;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Build;
 import android.view.View;
 import android.widget.Button;
@@ -13,7 +11,7 @@ import androidx.appcompat.widget.AppCompatSeekBar;
 import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.core.CoreFragment;
 import com.kubatov.quizapp.core.SimpleSeekBarChange;
-import com.kubatov.quizapp.ui.quiz.QuizActivity;
+import com.kubatov.quizapp.presentation.quiz.QuizActivity;
 import com.kubatov.quizapp.util.ViewHelperUtil;
 
 import org.angmarch.views.NiceSpinner;

@@ -1,4 +1,4 @@
-package com.kubatov.quizapp.ui.main;
+package com.kubatov.quizapp.presentation.main;
 
 import androidx.lifecycle.ViewModel;
 
