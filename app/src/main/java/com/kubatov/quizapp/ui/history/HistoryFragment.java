@@ -50,7 +50,6 @@ public class HistoryFragment extends CoreFragment {
         models.add(new HistoryModel("Music", "Easy", "12:43", 8));
         models.add(new HistoryModel("VideoGames", "Hard", "22:43", 2));
         models.add(new HistoryModel("Science: Computers", "Medium", "11:45", 4));
-        models.add(new HistoryModel("Musics", "Easy", "06:32", 10));
         return models;
     }
 }
