@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="extra_small_margin">5dp</dimen>
+    <dimen name="small_margin">16dp</dimen>
+    <dimen name="medium_margin">23dp</dimen>
+    <dimen name="big_margin">29dp</dimen>
+    <dimen name="extra_big_margin">32dp</dimen>
+    <dimen name="extra_big_margin_1">40dp</dimen>
+    <dimen name="extra_big_margin_2">43dp</dimen>
+
+    <dimen name="spinner_small_margin">5dp</dimen>
+    <dimen name="spinner_big_margin">64dp</dimen>
+
+    <dimen name="seek_bar_small_margin">8dp</dimen>
+    <dimen name="seek_bar_extra_big_margin">50dp</dimen>
+
+
+    <dimen name="default_padding"></dimen>
+    <dimen name="small_padding"></dimen>
+    <dimen name="medium_padding"></dimen>
+    <dimen name="big_padding"></dimen>
+    <dimen name="extra_big_padding"></dimen>
+
+    <dimen name="default_text"></dimen>
+    <dimen name="small_text">10sp</dimen>
+    <dimen name="medium_text">13sp</dimen>
+    <dimen name="start_button_text">15sp</dimen>
+    <dimen name="big_text">28sp</dimen>
+
+    <dimen name="elevation">6dp</dimen>
+    <dimen name="elevation_2">8dp</dimen>
 
 
 
