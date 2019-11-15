@@ -41,7 +41,7 @@
         android:lineSpacingExtra="6sp"
         android:text="@string/quiz_questions_amount"
         android:textColor="@color/colorOfTextViewDifficulty"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@+id/quiz"
         app:layout_constraintTop_toBottomOf="@+id/quiz_logo" />
 
@@ -49,11 +49,11 @@
         android:id="@+id/text_view_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="13dp"
+        android:layout_marginStart="5dp"
         android:fontFamily="@font/sf_text_semi_bold"
-        android:lineSpacingExtra="2sp"
         android:text="@string/quiz_amount_10"
         android:textColor="#3F3356"
+        app:layout_constraintBottom_toBottomOf="@+id/quiz_amount"
         app:layout_constraintStart_toEndOf="@+id/quiz_amount"
         app:layout_constraintTop_toTopOf="@+id/quiz_amount" />
 
@@ -78,7 +78,7 @@
         android:fontFamily="@font/sf_text_semi_bold"
         android:text="@string/quiz_category"
         android:textColor="@color/colorOfTextViewDifficulty"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@+id/quiz_amount"
         app:layout_constraintTop_toBottomOf="@+id/seek_bar_amount" />
 
@@ -102,7 +102,7 @@
         android:fontFamily="@font/sf_text_semi_bold"
         android:text="@string/quiz_difficulty"
         android:textColor="@color/colorOfTextViewDifficulty"
-        android:textSize="12sp"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@+id/quiz_amount"
         app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
 
@@ -111,6 +111,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="64dp"
         android:elevation="6dp"
         app:layout_constraintEnd_toEndOf="@+id/seek_bar_amount"

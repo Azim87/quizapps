@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class QuizNetWorkService {
     private static IQuizService mInstance;
 
-    private static IQuizService getInstance() {
+    public static IQuizService getInstance() {
         if (mInstance != null) {
             mInstance = buildRetroFit();
         }
