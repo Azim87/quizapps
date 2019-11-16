@@ -18,8 +18,8 @@ public class QuizRepository implements IQuizRepository {
     }
 
     @Override
-    public void getQuizData(OnQuizCallBack onQuizCallBack) {
-        dataSource.getQuestions(new OnQuizCallBack() {
+    public void getQuizData(int a, String c, String d, OnQuizCallBack onQuizCallBack) {
+        dataSource.getQuestions(a, c, d, new OnQuizCallBack() {
             @Override
             public void onSuccess(List<Questions> quizQuestions) {
                 onQuizCallBack.onSuccess(quizQuestions);

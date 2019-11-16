@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IQuizRepository {
 
-    void getQuizData(OnQuizCallBack onQuizCallBack);
+    void getQuizData(int a, String c, String d, OnQuizCallBack onQuizCallBack);
     void setQuizData();
 
 

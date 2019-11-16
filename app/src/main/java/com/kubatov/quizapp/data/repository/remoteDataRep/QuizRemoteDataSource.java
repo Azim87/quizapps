@@ -22,9 +22,9 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
     public static IQuizService service = retrofit.create(IQuizService.class);
 
     @Override
-    public void getQuestions(IQuizRepository.OnQuizCallBack onQuizCallBack) {
+    public void getQuestions(int amount, String category, String difficulty,   IQuizRepository.OnQuizCallBack onQuizCallBack) {
         Call<QuestionResponse> call = service.getQuestions(
-                10, null, null
+                amount, null, null
         );
 
         call.enqueue(new Callback<QuestionResponse>() {
@@ -49,10 +49,9 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
         @GET("api.php")
         Call<QuestionResponse> getQuestions(
                 @Query("amount") int amount,
-                @Query("category") Integer category,
+                @Query("category") String category,
                 @Query("difficulty") String difficulty
 
         );
     }
-
 }

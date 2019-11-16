@@ -62,18 +62,14 @@ public class QuizActivity extends AppCompatActivity {
         int seekBar = fakeIntent.getIntExtra(SEEK_BAR, 0);
         String category = fakeIntent.getStringExtra(DIFF_CATEGORY);
         String difficulty = fakeIntent.getStringExtra(DIFF_DIFFICULT);
-        TextView view = findViewById(R.id.navigation);
-        view.setText(category);
-        Toast.makeText(this, "onActivityResult: " + seekBar + "\n" + " " + category + " " + difficulty, Toast.LENGTH_SHORT).show();
-        getRemoteData();
-    }
 
-    private void getRemoteData() {
-        App.quizRepository.getQuizData(new IQuizRepository.OnQuizCallBack() {
+        App.quizRepository.getQuizData(seekBar, category, difficulty, new IQuizRepository.OnQuizCallBack() {
             @Override
             public void onSuccess(List<Questions> quizQuestions) {
-                Log.d("ololo", "onSuccess: " + quizQuestions.toString());
 
+                for (Questions questions: quizQuestions){
+                Log.d("ololo", "onSuccess: " + questions.toString());
+                }
             }
 
             @Override
@@ -81,7 +77,5 @@ public class QuizActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 }
