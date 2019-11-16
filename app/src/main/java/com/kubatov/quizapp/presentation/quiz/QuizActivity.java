@@ -68,8 +68,11 @@ public class QuizActivity extends AppCompatActivity {
             public void onSuccess(List<Questions> quizQuestions) {
 
                 for (Questions questions: quizQuestions){
-                Log.d("ololo", "onSuccess: " + questions.toString());
+                Log.d("ololo", "onSuccess: " + questions.getCategory());
+                    TextView view = findViewById(R.id.navigation);
+                    view.setText(questions.getCategory());
                 }
+
             }
 
             @Override

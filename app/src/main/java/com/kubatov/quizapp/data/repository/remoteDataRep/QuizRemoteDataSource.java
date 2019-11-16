@@ -19,10 +19,10 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    public static IQuizService service = retrofit.create(IQuizService.class);
+    private static IQuizService service = retrofit.create(IQuizService.class);
 
     @Override
-    public void getQuestions(int amount, String category, String difficulty,   IQuizRepository.OnQuizCallBack onQuizCallBack) {
+    public void getQuestions(int amount, String category, String difficulty, IQuizRepository.OnQuizCallBack onQuizCallBack) {
         Call<QuestionResponse> call = service.getQuestions(
                 amount, null, null
         );
@@ -33,8 +33,10 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
                         onQuizCallBack.onSuccess(response.body().getResults());
-                    }else {}
-                }else {}
+                    } else {
+                    }
+                } else {
+                }
             }
 
             @Override
@@ -43,7 +45,6 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
             }
         });
     }
-
 
     public interface IQuizService {
         @GET("api.php")

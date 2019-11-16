@@ -3,6 +3,7 @@ package com.kubatov.quizapp.data.repository;
 
 import androidx.annotation.Nullable;
 
+import com.kubatov.quizapp.data.repository.localDataRep.QuizLocalDataSource;
 import com.kubatov.quizapp.data.repository.remoteDataRep.QuizRemoteDataSource;
 import com.kubatov.quizapp.model.Questions;
 
@@ -11,29 +12,35 @@ import java.util.List;
 public class QuizRepository implements IQuizRepository {
 
     @Nullable
-    private QuizRemoteDataSource dataSource;
+    private QuizRemoteDataSource mRemoteDataSource;
+    @Nullable
+    private QuizLocalDataSource mLocalDataSource;
 
-    public QuizRepository(@Nullable QuizRemoteDataSource dataSource){
-        this.dataSource = dataSource;
+    public QuizRepository(@Nullable QuizRemoteDataSource remoteDataSource, @Nullable QuizLocalDataSource localDataSource) {
+        mRemoteDataSource = remoteDataSource;
+        mLocalDataSource = localDataSource;
     }
 
     @Override
     public void getQuizData(int a, String c, String d, OnQuizCallBack onQuizCallBack) {
-        dataSource.getQuestions(a, c, d, new OnQuizCallBack() {
-            @Override
-            public void onSuccess(List<Questions> quizQuestions) {
-                onQuizCallBack.onSuccess(quizQuestions);
-            }
 
-            @Override
-            public void onFailure(String message) {
+        if (mLocalDataSource != null) {
+            mLocalDataSource.getLocalData(onQuizCallBack);
+        }
 
-            }
-        });
-    }
+        if (mRemoteDataSource != null) {
+            mRemoteDataSource.getQuestions(a, c, d, new OnQuizCallBack() {
+                @Override
+                public void onSuccess(List<Questions> quizQuestions) {
+                    onQuizCallBack.onSuccess(quizQuestions);
+                    mLocalDataSource.setLocalData(quizQuestions);
+                }
 
-    @Override
-    public void setQuizData() {
+                @Override
+                public void onFailure(String message) {
 
+                }
+            });
+        }
     }
 }
