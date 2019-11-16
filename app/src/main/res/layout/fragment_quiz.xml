@@ -8,14 +8,10 @@
 
     <TextView
         android:id="@+id/quiz"
+        style="@style/TextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/medium_margin"
-        android:layout_marginTop="@dimen/extra_big_margin"
-        android:fontFamily="@font/sf_pro_text_bold"
         android:text="@string/quiz"
-        android:textColor="@color/colorOfTextViewQuiz"
-        android:textSize="@dimen/big_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,15 +29,12 @@
 
     <TextView
         android:id="@+id/quiz_amount"
+        style="@style/QuizFragmentSmallText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/extra_big_margin_1"
         android:layout_marginTop="@dimen/extra_big_margin_2"
-        android:fontFamily="@font/sf_text_semi_bold"
         android:text="@string/quiz_questions_amount"
-        android:textColor="@color/colorOfTextViewDifficulty"
-        android:textSize="@dimen/medium_text"
-        app:layout_constraintStart_toStartOf="@+id/quiz"
+        app:layout_constraintStart_toStartOf="@+id/text_view_category"
         app:layout_constraintTop_toBottomOf="@+id/quiz_logo" />
 
     <TextView
@@ -71,50 +64,39 @@
 
     <TextView
         android:id="@+id/text_view_category"
+        style="@style/QuizFragmentSmallText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_margin"
-        android:fontFamily="@font/sf_text_semi_bold"
         android:text="@string/quiz_category"
-        android:textColor="@color/colorOfTextViewDifficulty"
-        android:textSize="@dimen/medium_text"
-        app:layout_constraintStart_toStartOf="@+id/quiz_amount"
+        app:layout_constraintStart_toStartOf="@+id/spinner_category"
         app:layout_constraintTop_toBottomOf="@+id/seek_bar_amount" />
 
     <org.angmarch.views.NiceSpinner
         android:id="@+id/spinner_category"
+        style="@style/SpinnerStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spinner_big_margin"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="@dimen/spinner_big_margin"
-        android:elevation="@dimen/elevation"
         app:layout_constraintStart_toStartOf="@+id/seek_bar_amount"
         app:layout_constraintTop_toBottomOf="@+id/text_view_category"
         app:popupTextAlignment="start" />
 
     <TextView
         android:id="@+id/text_view_difficulty"
+        style="@style/QuizFragmentSmallText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_margin"
-        android:fontFamily="@font/sf_text_semi_bold"
         android:text="@string/quiz_difficulty"
-        android:textColor="@color/colorOfTextViewDifficulty"
-        android:textSize="@dimen/medium_text"
-        app:layout_constraintStart_toStartOf="@+id/quiz_amount"
+        app:layout_constraintStart_toStartOf="@+id/spinner_difficulty"
         app:layout_constraintTop_toBottomOf="@+id/spinner_category" />
 
     <org.angmarch.views.NiceSpinner
         android:id="@+id/spinner_difficulty"
+        style="@style/SpinnerStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spinner_big_margin"
-        android:layout_marginTop="@dimen/spinner_small_margin"
-        android:layout_marginEnd="@dimen/spinner_big_margin"
-        android:elevation="@dimen/elevation"
         app:layout_constraintEnd_toEndOf="@+id/seek_bar_amount"
-        app:layout_constraintHorizontal_bias="0.066"
         app:layout_constraintStart_toStartOf="@+id/seek_bar_amount"
         app:layout_constraintTop_toBottomOf="@+id/text_view_difficulty"
         app:popupTextAlignment="start" />
@@ -124,9 +106,6 @@
         style="@style/StartButtonStyle"
         android:layout_width="200dp"
         android:layout_height="55dp"
-        android:fontFamily="@font/sf_text_semi_bold"
-        android:text="@string/start_button_text"
-        android:textSize="@dimen/start_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/spinner_difficulty"
         app:layout_constraintHorizontal_bias="0.493"

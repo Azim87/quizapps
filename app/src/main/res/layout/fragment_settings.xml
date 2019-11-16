@@ -8,15 +8,10 @@
 
     <TextView
         android:id="@+id/settings"
+        style="@style/TextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="23dp"
-        android:paddingTop="32dp"
-        android:paddingBottom="34dp"
-        android:fontFamily="@font/sf_pro_text_bold"
         android:text="@string/settings_fragment"
-        android:textColor="@color/colorOfTextViewQuiz"
-        android:textSize="28sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +26,7 @@
         android:id="@+id/image_view_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="22dp"
+        android:layout_marginEnd="@dimen/small_margin_1"
         android:src="@drawable/ic_navigate_next"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,15 +34,11 @@
 
     <TextView
         android:id="@+id/share_this_text_view"
+        style="@style/AppTheme.SettingsItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sf_text_display_regular"
-        android:paddingStart="23dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
         android:text="@string/share_app"
         android:textColor="@color/colorOfTextViewQuiz"
-        android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />
 
@@ -62,7 +53,7 @@
         android:id="@+id/image_view_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="22dp"
+        android:layout_marginEnd="@dimen/small_margin_1"
         android:src="@drawable/ic_navigate_next"
         app:layout_constraintBottom_toTopOf="@+id/view3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,15 +61,11 @@
 
     <TextView
         android:id="@+id/rate_us_text_view"
+        style="@style/AppTheme.SettingsItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sf_text_display_regular"
-        android:paddingStart="23dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
         android:text="@string/rate_us"
         android:textColor="@color/colorOfTextViewQuiz"
-        android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view2" />
 
@@ -93,7 +80,7 @@
         android:id="@+id/image_view_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="22dp"
+        android:layout_marginEnd="@dimen/small_margin_1"
         android:src="@drawable/ic_navigate_next"
         app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,15 +88,11 @@
 
     <TextView
         android:id="@+id/leave_feedback_us_text_view"
+        style="@style/AppTheme.SettingsItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sf_text_display_regular"
-        android:paddingStart="23dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
         android:text="@string/leave_feedback"
         android:textColor="@color/colorOfTextViewQuiz"
-        android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view3" />
 
@@ -124,7 +107,7 @@
         android:id="@+id/image_view_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="22dp"
+        android:layout_marginEnd="@dimen/small_margin_1"
         android:src="@drawable/ic_navigate_next"
         app:layout_constraintBottom_toTopOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="parent"
@@ -132,15 +115,11 @@
 
     <TextView
         android:id="@+id/clear_history_text_view"
+        style="@style/AppTheme.SettingsItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sf_text_display_regular"
-        android:paddingStart="23dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
         android:text="@string/clear_history"
         android:textColor="@color/colorOfBottomNavIconSelected"
-        android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view4" />
 
@@ -155,7 +134,7 @@
         android:id="@+id/version_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="141dp"
+        android:layout_marginTop="@dimen/extra_big_margin_4"
         android:text="@string/version"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

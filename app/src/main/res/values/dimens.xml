@@ -2,12 +2,19 @@
 <resources>
 
     <dimen name="extra_small_margin">5dp</dimen>
+    <dimen name="extra_small_margin_1">12dp</dimen>
     <dimen name="small_margin">16dp</dimen>
+    <dimen name="small_margin_1">22dp</dimen>
     <dimen name="medium_margin">23dp</dimen>
+    <dimen name="medium_margin_1">24dp</dimen>
     <dimen name="big_margin">29dp</dimen>
+    <dimen name="big_margin_1">30dp</dimen>
+
     <dimen name="extra_big_margin">32dp</dimen>
-    <dimen name="extra_big_margin_1">40dp</dimen>
+    <dimen name="extra_big_margin_3">40dp</dimen>
     <dimen name="extra_big_margin_2">43dp</dimen>
+    <dimen name="extra_big_margin_1">48dp</dimen>
+    <dimen name="extra_big_margin_4">190dp</dimen>
 
     <dimen name="spinner_small_margin">5dp</dimen>
     <dimen name="spinner_big_margin">64dp</dimen>
@@ -15,22 +22,18 @@
     <dimen name="seek_bar_small_margin">8dp</dimen>
     <dimen name="seek_bar_extra_big_margin">50dp</dimen>
 
+    <dimen name="small_padding">23dp</dimen>
+    <dimen name="small_padding_1">20dp</dimen>
+    <dimen name="medium_padding">32dp</dimen>
+    <dimen name="big_padding">34dp</dimen>
 
-    <dimen name="default_padding"></dimen>
-    <dimen name="small_padding"></dimen>
-    <dimen name="medium_padding"></dimen>
-    <dimen name="big_padding"></dimen>
-    <dimen name="extra_big_padding"></dimen>
-
-    <dimen name="default_text"></dimen>
     <dimen name="small_text">10sp</dimen>
     <dimen name="medium_text">13sp</dimen>
+    <dimen name="medium_text_1">17sp</dimen>
+    <dimen name="medium_text_2">18sp</dimen>
     <dimen name="start_button_text">15sp</dimen>
     <dimen name="big_text">28sp</dimen>
-
     <dimen name="elevation">6dp</dimen>
     <dimen name="elevation_2">8dp</dimen>
-
-
 
 </resources>

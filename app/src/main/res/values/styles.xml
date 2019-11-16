@@ -23,10 +23,53 @@
     <style name="StartButtonStyle">
         <item name="android:background">@drawable/start_button_style</item>
         <item name="android:layout_marginTop">64dp</item>
-        <item name="android:layout_below">@+id/spinner_difficulty</item>
+        <item name="android:fontFamily">@font/sf_pro_text_bold</item>
         <item name="android:textColor">@color/colorOfStartButton</item>
         <item name="android:layout_marginLeft">20dp</item>
         <item name="android:layout_marginRight">20dp</item>
-        <item name="android:text"></item>
+        <item name="android:text">@string/start_button_text</item>
+        <item name="android:textSize">@dimen/start_button_text</item>
+    </style>
+
+    <style name="TextTitle" parent="AppTheme.BoldTextStyle">
+        <item name="android:fontFamily">@font/sf_pro_text_bold</item>
+
+    </style>
+
+    <style name="AppTheme.BoldTextStyle">
+        <item name="android:textColor">@color/colorOfTextViewQuiz</item>
+        <item name="android:textSize">@dimen/big_text</item>
+        <item name="android:paddingStart">@dimen/small_padding</item>
+        <item name="android:paddingTop">@dimen/medium_padding</item>
+        <item name="android:paddingBottom">@dimen/big_padding</item>
+    </style>
+
+    <style name="AppTheme.SettingsItem">
+        <item name="android:clickable">true</item>
+        <item name="android:fontFamily">@font/sf_text_display_regular</item>
+        <item name="android:paddingStart">@dimen/small_padding</item>
+        <item name="android:paddingTop">@dimen/small_padding_1</item>
+        <item name="android:paddingBottom">@dimen/small_padding_1</item>
+        <item name="android:textSize">@dimen/medium_text_2</item>
+    </style>
+
+    <style name="SpinnerStyle">
+        <item name="android:layout_marginStart">@dimen/spinner_big_margin</item>
+        <item name="android:layout_marginTop">@dimen/spinner_small_margin</item>
+        <item name="android:layout_marginEnd">@dimen/spinner_big_margin</item>
+        <item name="android:elevation">@dimen/elevation</item>
+    </style>
+
+    <style name="QuizFragmentSmallText">
+        <item name="android:fontFamily">@font/sf_text_semi_bold</item>
+        <item name="android:textColor">@color/colorOfTextViewDifficulty</item>
+        <item name="android:textSize">@dimen/medium_text</item>
+    </style>
+
+    <style name="HistoryStyle">
+        <item name="android:fontFamily">@font/sf_pro_display_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginStart">@dimen/extra_small_margin_1</item>
     </style>
 </resources>
+

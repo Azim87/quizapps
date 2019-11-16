@@ -6,13 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".presentation.quiz.QuizActivity">
 
-    <TextView
-        android:id="@+id/text_quizs"
+    <ImageView
+        android:id="@+id/image_view_previous"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="dlkjajf"
-        android:textSize="40sp"
-        tools:layout_editor_absoluteX="166dp"
-        tools:layout_editor_absoluteY="338dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/medium_margin_1"
+        android:layout_marginTop="@dimen/extra_big_margin_1"
+        android:src="@drawable/ic_navigate_previous"
+        app:layout_constraintBottom_toBottomOf="@id/navigation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/navigation"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:layout_marginStart="@dimen/extra_big_margin_1"
+        android:layout_marginTop="@dimen/extra_big_margin_1"
+        android:layout_marginEnd="@dimen/extra_big_margin_3"
+        android:fontFamily="@font/sf_text_semi_bold"
+        android:text="Geography"
+        android:textAlignment="center"
+        android:textColor="@color/colorOfTitleQuizActivity"
+        android:textSize="@dimen/medium_text_1"
+        app:layout_constraintBottom_toBottomOf="@+id/image_view_previous"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/quiz_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbars="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/skip_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/navigation" />
+
+    <Button
+        android:id="@+id/skip_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Skip"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginBottom="77dp"
+        app:layout_constraintStart_toStartOf="@+id/quiz_recycler_view"
+        app:layout_constraintTop_toBottomOf="@id/quiz_recycler_view"
+        app:layout_constraintVertical_bias="0.831" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

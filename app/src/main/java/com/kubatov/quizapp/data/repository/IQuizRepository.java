@@ -1,17 +1,18 @@
 package com.kubatov.quizapp.data.repository;
 
-import com.kubatov.quizapp.model.QuizQuestions;
+import com.kubatov.quizapp.data.repository.remoteDataRep.model.QuestionResponse;
+import com.kubatov.quizapp.model.Questions;
 
 import java.util.List;
 
 public interface IQuizRepository {
 
-    void getQuizData();
+    void getQuizData(OnQuizCallBack onQuizCallBack);
     void setQuizData();
 
 
     interface OnQuizCallBack{
-        void onSuccess(List<QuizQuestions> quizQuestions);
-        void onFailure(Exception e);
+        void onSuccess(List<Questions> quizQuestions);
+        void onFailure(String message);
     }
 }
