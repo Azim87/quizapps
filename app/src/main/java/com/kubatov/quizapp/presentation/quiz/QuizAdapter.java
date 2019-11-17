@@ -1,5 +1,6 @@
 package com.kubatov.quizapp.presentation.quiz;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,22 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kubatov.quizapp.R;
+import com.kubatov.quizapp.data.repository.remoteDataRep.model.QuestionResponse;
+import com.kubatov.quizapp.model.Questions;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder> {
+    private List<Questions> arrayList;
+
+    public QuizAdapter(List<Questions> arrayList){
+        this.arrayList = arrayList;
+
+    }
 
     @NonNull
     @Override
@@ -26,12 +38,13 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull QuizViewHolder holder, int position) {
-
+        holder.mTextQuizQuestion.setText(arrayList.get(position).getQuestion());
+        Log.d("ololo", "onBindViewHolder: " + arrayList.get(position).getCategory() + " " + arrayList.get(position).getQuestion());
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return arrayList.size();
     }
 
     public class QuizViewHolder extends RecyclerView.ViewHolder {

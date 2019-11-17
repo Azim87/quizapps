@@ -14,7 +14,7 @@
         android:text="What is the largest city and commercial capital of Sri Lanka?"
         android:textAlignment="center"
         android:textColor="#1A051D"
-        android:textSize="20sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

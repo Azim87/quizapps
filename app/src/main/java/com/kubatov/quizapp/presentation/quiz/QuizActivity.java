@@ -16,6 +16,7 @@ import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.data.repository.IQuizRepository;
 import com.kubatov.quizapp.model.Questions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,6 +32,8 @@ public class QuizActivity extends AppCompatActivity {
 
     @BindView(R.id.quiz_recycler_view)
     RecyclerView mQuizRecycler;
+    private List<Questions> questionsArrayList = new ArrayList<>();
+    private QuizAdapter mQuizAdapter;
 
     public static void start(Context context, int seekBarValue, String categoryValue, String difficultValue) {
         Intent fakeIntent = new Intent(context, QuizActivity.class);
@@ -50,10 +53,11 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void initRecycler() {
-        QuizAdapter mQuizAdapter = new QuizAdapter();
+        mQuizAdapter = new QuizAdapter(questionsArrayList);
         mQuizRecycler.setHasFixedSize(true);
         mQuizRecycler.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-        mQuizRecycler.setAdapter(mQuizAdapter);
+
+
     }
 
     private void showFakeData() {
@@ -66,11 +70,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<Questions> quizQuestions) {
 
-                for (Questions questions : quizQuestions) {
-                    Log.d("ololo", "onSuccess: " + questions.getCategory());
-                    TextView view = findViewById(R.id.navigation);
-                    view.setText(questions.getCategory());
-                }
+                questionsArrayList.addAll(quizQuestions);
+                mQuizRecycler.setAdapter(mQuizAdapter);
+
+
             }
 
             @Override
