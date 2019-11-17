@@ -20,4 +20,5 @@
     <string name="clear_history">Clear history</string>
     <string name="leave_feedback">Leave feedback</string>
     <string name="version">v 1.0.0</string>
+    <string name="skip">Skip</string>
 </resources>

@@ -18,29 +18,32 @@ public class QuizRepository implements IQuizRepository {
 
     public QuizRepository(@Nullable QuizRemoteDataSource remoteDataSource, @Nullable QuizLocalDataSource localDataSource) {
         mRemoteDataSource = remoteDataSource;
+
         mLocalDataSource = localDataSource;
     }
 
     @Override
-    public void getQuizData(int a, String c, String d, OnQuizCallBack onQuizCallBack) {
+    public void getQuizData(int amount, String category, String difficulty,
+                            OnQuizCallBack onQuizCallBack) {
 
         if (mLocalDataSource != null) {
             mLocalDataSource.getLocalData(onQuizCallBack);
         }
 
         if (mRemoteDataSource != null) {
-            mRemoteDataSource.getQuestions(a, c, d, new OnQuizCallBack() {
-                @Override
-                public void onSuccess(List<Questions> quizQuestions) {
-                    onQuizCallBack.onSuccess(quizQuestions);
-                    mLocalDataSource.setLocalData(quizQuestions);
-                }
+            mRemoteDataSource.getQuestions(amount, category, difficulty,
+                    new OnQuizCallBack() {
+                        @Override
+                        public void onSuccess(List<Questions> quizQuestions) {
+                            onQuizCallBack.onSuccess(quizQuestions);
+                            mLocalDataSource.setLocalData(quizQuestions);
+                        }
 
-                @Override
-                public void onFailure(String message) {
-
-                }
-            });
+                        @Override
+                        public void onFailure(String message) {
+                            onQuizCallBack.onFailure(message);
+                        }
+                    });
         }
     }
 }
