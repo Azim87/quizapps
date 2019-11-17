@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,12 +66,11 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onSuccess(List<Questions> quizQuestions) {
 
-                for (Questions questions: quizQuestions){
-                Log.d("ololo", "onSuccess: " + questions.getCategory());
+                for (Questions questions : quizQuestions) {
+                    Log.d("ololo", "onSuccess: " + questions.getCategory());
                     TextView view = findViewById(R.id.navigation);
                     view.setText(questions.getCategory());
                 }
-
             }
 
             @Override

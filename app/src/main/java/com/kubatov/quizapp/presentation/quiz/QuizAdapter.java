@@ -31,10 +31,15 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
 
     @Override
     public int getItemCount() {
-        return 0;
+        return 4;
     }
 
     public class QuizViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.quiz_question) TextView mTextQuizQuestion;
+        @BindView(R.id.quiz_question_answer_1) TextView mTextQuizQuestionAnswer1;
+        @BindView(R.id.quiz_question_answer_2) TextView mTextQuizQuestionAnswer2;
+        @BindView(R.id.quiz_question_answer_3) TextView mTextQuizQuestionAnswer3;
+        @BindView(R.id.quiz_question_answer_4) TextView mTextQuizQuestionAnswer4;
 
         public QuizViewHolder(@NonNull View itemView) {
             super(itemView);

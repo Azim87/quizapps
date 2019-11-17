@@ -1,12 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/quiz_question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="81dp"
+        android:layout_marginEnd="81dp"
+        android:fontFamily="@font/sf_text_display_regular"
+        android:text="What is the largest city and commercial capital of Sri Lanka?"
+        android:textAlignment="center"
+        android:textColor="#1A051D"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/quiz_question_answer_1"
+        style="@style/QuizQuestionAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_big_margin_2"
+        android:background="@drawable/quiz_answer_view_blue"
+        android:text="Colombo"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/quiz_question" />
 
+    <TextView
+        android:id="@+id/quiz_question_answer_2"
+        style="@style/QuizQuestionAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_small_margin_2"
+        android:background="@drawable/quiz_answer_view_white"
+        android:text="Moratuwa"
+        android:textColor="@color/colorOfStartButtonBackground"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_question_answer_1" />
 
+    <TextView
+        android:id="@+id/quiz_question_answer_3"
+        style="@style/QuizQuestionAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_small_margin_2"
+        android:background="@drawable/quiz_answer_view_white"
+        android:text="Negombo"
+        android:textColor="@color/colorOfStartButtonBackground"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_question_answer_2" />
 
+    <TextView
+        android:id="@+id/quiz_question_answer_4"
+        style="@style/QuizQuestionAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_small_margin_2"
+        android:background="@drawable/quiz_answer_view_white"
+        android:text="Kandy"
+        android:textColor="@color/colorOfStartButtonBackground"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_question_answer_3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
