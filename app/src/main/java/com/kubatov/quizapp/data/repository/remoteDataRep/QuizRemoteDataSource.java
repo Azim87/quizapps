@@ -52,7 +52,7 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
 
 
     @Override
-    public void getCategory(int id, String name, IQuizRepository.OnQuizCategoryCallBack categoryCallBack) {
+    public void getCategory(int id, String name, IQuizRepository.OnQuizCallBack categoryCallBack) {
         Call<CategoryResponse> callCategory = service.getCategory(id, name);
 
         callCategory.enqueue(new Callback<CategoryResponse>() {
@@ -60,14 +60,14 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        categoryCallBack.onSuccesss(response.body().getCategories());
+                        categoryCallBack.onSuccess(response.body().getCategories());
                         Log.d("ololo", "onResponse: " + response.body().getCategories());
 
                     } else {
-                        categoryCallBack.onFailures("body is empty");
+                        categoryCallBack.onFailure("body is empty");
                     }
                 } else {
-                    categoryCallBack.onFailures("Response code  " + response.code());
+                    categoryCallBack.onFailure("Response code  " + response.code());
                 }
             }
 

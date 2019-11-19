@@ -79,10 +79,10 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
         App.quizRepository.getQuizQuestions(amount, category, difficulty, new IQuizRepository.OnQuizCallBack() {
 
             @Override
-            public void onSuccess(List<Questions> quizResponse) {
+            public void onSuccess(List quizResponse) {
                 questionsArrayList.addAll(quizResponse);
                 mQuizAdapter.notifyDataSetChanged();
-                Log.d("ololo", "onSuccess: " + quizResponse.get(0).getCategory());
+                Log.d("ololo", "onSuccess: " +quizResponse);
             }
 
             @Override

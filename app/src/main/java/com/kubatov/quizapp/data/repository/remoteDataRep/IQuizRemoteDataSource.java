@@ -6,6 +6,6 @@ public interface IQuizRemoteDataSource {
 
     void getQuestions(int amount, String category, String difficulty, IQuizRepository.OnQuizCallBack onQuizCallBack);
 
-    void getCategory(int id, String name, IQuizRepository.OnQuizCategoryCallBack categoryQuizCallBack);
+    void getCategory(int id, String name, IQuizRepository.OnQuizCallBack categoryQuizCallBack);
 }
 

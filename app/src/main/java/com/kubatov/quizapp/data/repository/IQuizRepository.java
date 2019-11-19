@@ -8,19 +8,12 @@ import java.util.List;
 public interface IQuizRepository {
 
     void getQuizQuestions(int a, String c, String d, OnQuizCallBack questionCallBack);
-    void getQuizCategory(int id, String name, OnQuizCategoryCallBack categoryCallBack);
+    void getQuizCategory(int id, String name,  OnQuizCallBack categoryCallBack);
 
-    interface OnQuizCallBack {
+    interface OnQuizCallBack <T>{
 
-        void onSuccess(List<Questions> quizResponse);
+        void onSuccess(List<T> quizResponse);
 
         void onFailure(String message);
-    }
-
-    interface OnQuizCategoryCallBack {
-
-        void onSuccesss(List<Category> quizCategoryResponse);
-
-        void onFailures(String message);
     }
 }

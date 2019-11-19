@@ -35,7 +35,7 @@ public class QuizRepository implements IQuizRepository {
             mRemoteDataSource.getQuestions(amount, category, difficulty,
                     new OnQuizCallBack() {
                         @Override
-                        public void onSuccess(List<Questions> quizResponse) {
+                        public void onSuccess(List quizResponse) {
                             questionCallBack.onSuccess(quizResponse);
                             mLocalDataSource.setLocalData(quizResponse);
                         }
@@ -50,8 +50,9 @@ public class QuizRepository implements IQuizRepository {
     }
 
     @Override
-    public void getQuizCategory(int id, String name, OnQuizCategoryCallBack categoryCallBack) {
+    public void getQuizCategory(int id, String name, OnQuizCallBack categoryCallBack) {
 
     }
+
 
 }
