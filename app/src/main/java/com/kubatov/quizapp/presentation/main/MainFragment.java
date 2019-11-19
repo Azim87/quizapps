@@ -115,6 +115,7 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
     public void onClick(View v) {
         QuizActivity.start(getContext(),
                 mSeekBar.getProgress(),
+                spinnerCategory.getSelectedIndex(),
                 spinnerCategory.getSelectedItem().toString(),
                 spinnerDifficulty.getSelectedItem().toString());
     }

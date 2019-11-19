@@ -2,9 +2,9 @@ package com.kubatov.quizapp.data.repository;
 
 
 import androidx.annotation.Nullable;
-
 import com.kubatov.quizapp.data.repository.localDataRep.QuizLocalDataSource;
 import com.kubatov.quizapp.data.repository.remoteDataRep.QuizRemoteDataSource;
+import com.kubatov.quizapp.data.repository.remoteDataRep.model.QuestionResponse;
 import com.kubatov.quizapp.model.Questions;
 
 import java.util.List;
@@ -16,34 +16,42 @@ public class QuizRepository implements IQuizRepository {
     @Nullable
     private QuizLocalDataSource mLocalDataSource;
 
-    public QuizRepository(@Nullable QuizRemoteDataSource remoteDataSource, @Nullable QuizLocalDataSource localDataSource) {
+    public QuizRepository(
+            @Nullable QuizRemoteDataSource remoteDataSource,
+            @Nullable QuizLocalDataSource localDataSource) {
         mRemoteDataSource = remoteDataSource;
-
         mLocalDataSource = localDataSource;
     }
 
     @Override
-    public void getQuizData(int amount, String category, String difficulty,
-                            OnQuizCallBack onQuizCallBack) {
+    public void getQuizQuestions(
+            int amount, String category, String difficulty, OnQuizCallBack questionCallBack) {
 
         if (mLocalDataSource != null) {
-            mLocalDataSource.getLocalData(onQuizCallBack);
+            mLocalDataSource.getLocalData(questionCallBack);
         }
 
         if (mRemoteDataSource != null) {
             mRemoteDataSource.getQuestions(amount, category, difficulty,
                     new OnQuizCallBack() {
                         @Override
-                        public void onSuccess(List<Questions> quizQuestions) {
-                            onQuizCallBack.onSuccess(quizQuestions);
-                            mLocalDataSource.setLocalData(quizQuestions);
+                        public void onSuccess(List<Questions> quizResponse) {
+                            questionCallBack.onSuccess(quizResponse);
+                            mLocalDataSource.setLocalData(quizResponse);
                         }
+
 
                         @Override
                         public void onFailure(String message) {
-                            onQuizCallBack.onFailure(message);
+                            questionCallBack.onFailure(message);
                         }
                     });
         }
     }
+
+    @Override
+    public void getQuizCategory(int id, String name, OnQuizCategoryCallBack categoryCallBack) {
+
+    }
+
 }

@@ -14,7 +14,7 @@ public class Questions {
 
     private String question;
 
-    @SerializedName("correct_answers")
+    @SerializedName("correct_answer")
     private String correctAnswers;
 
     @SerializedName("incorrect_answers")
