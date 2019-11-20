@@ -20,6 +20,8 @@ public class Questions {
     @SerializedName("incorrect_answers")
     private List<String> incorrectAnswers;
 
+    private List<String> answers;
+
     public Questions(String category, String type, String difficulty, String question, String correctAnswers, List<String> incorrectAnswers) {
         this.category = category;
         this.type = type;
@@ -27,6 +29,10 @@ public class Questions {
         this.question = question;
         this.correctAnswers = correctAnswers;
         this.incorrectAnswers = incorrectAnswers;
+    }
+
+    public List<String> getAnswers() {
+        return answers;
     }
 
     public String getCategory() {
@@ -75,6 +81,10 @@ public class Questions {
 
     public void setIncorrectAnswers(List<String> incorrectAnswers) {
         this.incorrectAnswers = incorrectAnswers;
+    }
+
+    public void setAnswers(List<String> answers) {
+        this.answers = answers;
     }
 
     @Override

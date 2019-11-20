@@ -3,8 +3,11 @@ package com.kubatov.quizapp.data.repository.remoteDataRep;
 import android.util.Log;
 
 import com.kubatov.quizapp.data.repository.IQuizRepository;
-import com.kubatov.quizapp.data.repository.remoteDataRep.model.CategoryResponse;
 import com.kubatov.quizapp.data.repository.remoteDataRep.model.QuestionResponse;
+import com.kubatov.quizapp.model.Questions;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,7 +18,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public class QuizRemoteDataSource implements IQuizRemoteDataSource {
-    private final static String BASE_URL = "https://opentdb.com";
+    private final static String BASE_URL = "https://opentdb.com/";
 
     private static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -24,72 +27,55 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
 
     private static IQuizService service = retrofit.create(IQuizService.class);
 
+    private Questions shuffleQuestions(Questions questions) {
+        ArrayList<String> answers = new ArrayList<>();
+        answers.add(questions.getCorrectAnswers());
+        answers.addAll(questions.getIncorrectAnswers());
+
+        Collections.shuffle(answers);
+        questions.setAnswers(answers);
+        return questions;
+    }
+
     @Override
-    public void getQuestions(int amount, String category, String difficulty, IQuizRepository.OnQuizCallBack onQuizCallBack) {
-        Call<QuestionResponse> callQuestions = service.getQuestions(amount, null, null);
+    public void getQuestions(int amount, Integer category, String difficulty, IQuizRepository.OnQuizCallBack onQuizCallBack) {
+
+        Call<QuestionResponse> callQuestions = service.getQuestions(amount, category, null);
 
         callQuestions.enqueue(new Callback<QuestionResponse>() {
             @Override
             public void onResponse(Call<QuestionResponse> call, Response<QuestionResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
+
+                        for (int i = 0; i < response.body().getResults().size(); i++) {
+                            Questions questions = response.body().getResults().get(i);
+                            response.body().getResults().set(i, shuffleQuestions(questions));
+                        }
+
                         onQuizCallBack.onSuccess(response.body().getResults());
                         Log.d("ololo", "onResponse: " + response.body().getResults());
                     } else {
-                        onQuizCallBack.onFailure("Body is null");
+                        onQuizCallBack.onFailure(new Exception());
                     }
                 } else {
-                    onQuizCallBack.onFailure("Response code  " + response.code());
+                    onQuizCallBack.onFailure(new Exception("Response code  " + response.code()));
                 }
             }
 
             @Override
             public void onFailure(Call<QuestionResponse> call, Throwable t) {
-                onQuizCallBack.onFailure(t.getMessage());
+                onQuizCallBack.onFailure(new Exception(t));
             }
         });
     }
-
-
-    @Override
-    public void getCategory(int id, String name, IQuizRepository.OnQuizCallBack categoryCallBack) {
-        Call<CategoryResponse> callCategory = service.getCategory(id, name);
-
-        callCategory.enqueue(new Callback<CategoryResponse>() {
-            @Override
-            public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        categoryCallBack.onSuccess(response.body().getCategories());
-                        Log.d("ololo", "onResponse: " + response.body().getCategories());
-
-                    } else {
-                        categoryCallBack.onFailure("body is empty");
-                    }
-                } else {
-                    categoryCallBack.onFailure("Response code  " + response.code());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<CategoryResponse> call, Throwable t) {
-
-            }
-        });
-    }
-
 
     public interface IQuizService {
-        @GET("api.php")
+        @GET("/api.php")
         Call<QuestionResponse> getQuestions(
                 @Query("amount") int amount,
-                @Query("category") String category,
-                @Query("difficulty") String difficulty);
-
-        @GET("api.category.php")
-        Call<CategoryResponse> getCategory(
-                @Query("id") Integer amount,
-                @Query("name") String category);
-
+                @Query("category") Integer category,
+                @Query("difficulty") String difficulty
+        );
     }
 }

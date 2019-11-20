@@ -1,19 +1,16 @@
 package com.kubatov.quizapp.data.repository;
 
-import com.kubatov.quizapp.model.Category;
 import com.kubatov.quizapp.model.Questions;
-
 import java.util.List;
 
 public interface IQuizRepository {
 
-    void getQuizQuestions(int a, String c, String d, OnQuizCallBack questionCallBack);
-    void getQuizCategory(int id, String name,  OnQuizCallBack categoryCallBack);
+    void getQuizQuestions(int amount, Integer category, String difficult, OnQuizCallBack questionCallBack);
 
-    interface OnQuizCallBack <T>{
+    interface OnQuizCallBack {
 
-        void onSuccess(List<T> quizResponse);
+        void onSuccess(List<Questions> result);
 
-        void onFailure(String message);
+        void onFailure(Exception e);
     }
 }

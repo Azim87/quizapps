@@ -62,30 +62,30 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
 
     private void initCategorySpinner() {
         List<String> category = new LinkedList<>(Arrays.asList(ANY_CATEGORY));
-        category.add("ANIMALS");
-        category.add("ART");
-        category.add("CELEBRITIES");
-        category.add("ENTERTAINMENT: BOARD GAMES");
-        category.add("ENTERTAINMENT: BOOKS");
-        category.add("ENTERTAINMENT: CARTOON & ANIMATIONS");
-        category.add("ENTERTAINMENT: COMICS");
-        category.add("ENTERTAINMENT: FILM");
-        category.add("ENTERTAINMENT: JAPANESE ANIME & MANGA");
         category.add("GENERAL KNOWLEDGE");
+        category.add("ENTERTAINMENT: BOOKS");
+        category.add("ENTERTAINMENT: FILM");
         category.add("ENTERTAINMENT: MUSIC");
         category.add("ENTERTAINMENT: MUSICALS & THEATRES");
         category.add("ENTERTAINMENT: TELEVISION");
         category.add("ENTERTAINMENT: VIDEO GAMES");
-        category.add("GEOGRAPHY");
-        category.add("HISTORY");
-        category.add("MYTHOLOGY");
-        category.add("POLITICS");
+        category.add("ENTERTAINMENT: BOARD GAMES");
         category.add("SCIENCE & NATURE");
         category.add("SCIENCE: COMPUTERS");
         category.add("SCIENCE: MATHEMATICS");
-        category.add("SCIENCE: GADGETS");
+        category.add("MYTHOLOGY");
         category.add("SPORTS");
+        category.add("GEOGRAPHY");
+        category.add("HISTORY");
+        category.add("POLITICS");
+        category.add("ART");
+        category.add("CELEBRITIES");
+        category.add("ANIMALS");
         category.add("VEHICLES");
+        category.add("ENTERTAINMENT: COMICS");
+        category.add("SCIENCE: GADGETS");
+        category.add("ENTERTAINMENT: JAPANESE ANIME & MANGA");
+        category.add("ENTERTAINMENT: CARTOON & ANIMATIONS");
         ViewHelperUtil.show(category, spinnerCategory);
     }
 
@@ -113,10 +113,15 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+        int categoryId = 0;
+        if (spinnerCategory.getSelectedIndex() != 0){
+            categoryId = spinnerCategory.getSelectedIndex() + 8;
+        }
+
         QuizActivity.start(getContext(),
                 mSeekBar.getProgress(),
-                spinnerCategory.getSelectedIndex(),
-                spinnerCategory.getSelectedItem().toString(),
+                categoryId,
                 spinnerDifficulty.getSelectedItem().toString());
     }
 }

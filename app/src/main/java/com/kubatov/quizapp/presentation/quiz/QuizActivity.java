@@ -1,45 +1,38 @@
 package com.kubatov.quizapp.presentation.quiz;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kubatov.quizapp.App;
 import com.kubatov.quizapp.R;
-import com.kubatov.quizapp.data.repository.IQuizRepository;
-import com.kubatov.quizapp.model.Questions;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnItemClick {
+public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnItemClickListener {
     private QuizViewModel mQuizViewModel;
+    private QuizAdapter mQuizAdapter;
 
-    public static final String SEEK_BAR = "seekbar";
-    public static final String DIFF_DIFFICULT = "difficult";
-    public static final String CATEG_ID = "category_id";
+    public static final String SEEK_BAR = "amount";
     public static final String CATEGORY_NAME = "category";
-
+    public static final String DIFF_DIFFICULT = "difficult";
 
     @BindView(R.id.quiz_recycler_view)
     RecyclerView mQuizRecycler;
-    private List<Questions> questionsArrayList = new ArrayList<>();
-    private QuizAdapter mQuizAdapter;
 
-    public static void start(Context context, int seekBarValue, int id, String category, String difficultValue) {
+    public static void start(Context context, int amount, int category, String difficultValue) {
         Intent fakeIntent = new Intent(context, QuizActivity.class);
-        fakeIntent.putExtra(SEEK_BAR, seekBarValue);
-        fakeIntent.putExtra(CATEG_ID, id);
+        fakeIntent.putExtra(SEEK_BAR, amount);
         fakeIntent.putExtra(CATEGORY_NAME, category);
         fakeIntent.putExtra(DIFF_DIFFICULT, difficultValue);
         context.startActivity(fakeIntent);
@@ -49,16 +42,20 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        mQuizViewModel = ViewModelProviders.of(this)
+                .get(QuizViewModel.class);
+
         ButterKnife.bind(this);
         initRecycler();
-
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void initRecycler() {
-        mQuizAdapter = new QuizAdapter(questionsArrayList, this);
+        mQuizAdapter = new QuizAdapter(this);
         mQuizRecycler.setHasFixedSize(true);
         mQuizRecycler.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         mQuizRecycler.setAdapter(mQuizAdapter);
+        mQuizRecycler.setOnTouchListener((v, event) -> true);
         showQuizData();
 
     }
@@ -66,34 +63,20 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     private void showQuizData() {
         Intent fakeIntent = getIntent();
         int amount = fakeIntent.getIntExtra(SEEK_BAR, 0);
-        int id = fakeIntent.getIntExtra(CATEG_ID, 0);
-        String category = fakeIntent.getStringExtra(CATEGORY_NAME);
+        int category = fakeIntent.getIntExtra(CATEGORY_NAME, 0);
         String difficulty = fakeIntent.getStringExtra(DIFF_DIFFICULT);
         getQuestionData(amount, category, difficulty);
-
-        Log.d("ololo", "showQuizData: " + amount + " " + id + " " + difficulty);
-
     }
 
-    private void getQuestionData(int amount, String category, String difficulty) {
-        App.quizRepository.getQuizQuestions(amount, category, difficulty, new IQuizRepository.OnQuizCallBack() {
+    private void getQuestionData(Integer amount, Integer category, String difficulty) {
 
-            @Override
-            public void onSuccess(List quizResponse) {
-                questionsArrayList.addAll(quizResponse);
-                mQuizAdapter.notifyDataSetChanged();
-                Log.d("ololo", "onSuccess: " +quizResponse);
-            }
-
-            @Override
-            public void onFailure(String message) {
-                Log.d("ololo", "onFailure: " + message);
-            }
-        });
+        mQuizViewModel.questions.observe(this, questions -> mQuizAdapter.setQuestions(questions));
+        mQuizViewModel.initViews(amount, category, difficulty);
     }
+
 
     @Override
-    public void onClick(int questionPosition, int adapterPosition) {
-
+    public void onAnswerClick(int questionPosition, int answerPosition) {
+        mQuizViewModel.onAnswerClick(questionPosition, answerPosition);
     }
 }

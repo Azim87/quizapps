@@ -12,6 +12,8 @@ public class QuestionResponse {
 
     private List<Questions> results;
 
+    private List<String> answers;
+
     public QuestionResponse(int responseCode, List<Questions> results) {
         this.responseCode = responseCode;
         this.results = results;
