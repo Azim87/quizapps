@@ -29,7 +29,7 @@
         android:layout_marginEnd="@dimen/extra_big_margin_3"
         android:ellipsize="marquee"
         android:fontFamily="@font/sf_text_semi_bold"
-        android:text="Geography"
+        android:text="Category"
         android:textAlignment="center"
         android:textColor="@color/colorOfTitleQuizActivity"
         android:textSize="@dimen/medium_text_1"

@@ -10,6 +10,7 @@ import com.kubatov.quizapp.core.SingleLiveEvent;
 import com.kubatov.quizapp.data.repository.IQuizRepository;
 import com.kubatov.quizapp.model.Questions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.kubatov.quizapp.presentation.quiz.QuizActivity.CATEGORY_NAME;
@@ -57,6 +58,14 @@ public class QuizViewModel extends ViewModel {
             } else {
                 currentQuestionPosition.setValue(currentPosition + 1);
             }
+        }
+    }
+
+    void onPreviousQuestion(){
+        if (currentQuestionPosition.getValue() >=0){
+            currentQuestionPosition.setValue(currentQuestionPosition.getValue() -1);
+        }else {
+            finishEvent.call();
         }
     }
 }

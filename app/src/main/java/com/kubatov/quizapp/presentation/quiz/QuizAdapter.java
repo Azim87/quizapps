@@ -16,12 +16,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnItemClick;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder> {
     private List<Questions> mQuestions = new ArrayList<>();
     private OnItemClickListener mListener;
-
 
     public QuizAdapter(OnItemClickListener onItemClick) {
         mListener = onItemClick;
@@ -50,6 +48,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         notifyDataSetChanged();
     }
 
+
     public class QuizViewHolder extends RecyclerView.ViewHolder {
         OnItemClickListener listener;
 
@@ -64,14 +63,17 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         @BindView(R.id.quiz_question_answer_4)
         TextView mTextQuizQuestionAnswer4;
 
+
         public QuizViewHolder(@NonNull View itemView, QuizAdapter.OnItemClickListener listener) {
             super(itemView);
             this.listener = listener;
             ButterKnife.bind(this, itemView);
         }
 
+
         public void onBind(Questions questions) {
             mTextQuizQuestion.setText(questions.getQuestion());
+            mTextQuizQuestionAnswer1.setText(questions.getCategory());
         }
     }
 
