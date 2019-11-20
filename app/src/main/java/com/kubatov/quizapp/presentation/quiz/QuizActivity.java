@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +30,7 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     private QuizViewModel mQuizViewModel;
     private QuizAdapter mQuizAdapter;
     private int amount;
+    int pos;
 
     @BindView(R.id.quiz_recycler_view)
     RecyclerView mQuizRecycler;
@@ -59,10 +61,12 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     @SuppressLint("SetTextI18n")
     private void initViewModel() {
         mQuizViewModel.questions.observe(this, questions -> mQuizAdapter.setQuestions(questions));
+        mQuizViewModel.finishEvent.observe(this, aVoid -> finish());
         mQuizViewModel.currentQuestionPosition.observe(this, position -> {
             amountProgressView.setText((position + 1) + "/" + amount);
             amountProgressBar.setProgress(position + 1);
             amountProgressBar.setMax(amount);
+            mQuizRecycler.scrollToPosition(pos);
         });
     }
 
@@ -88,5 +92,10 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     @OnClick(R.id.skip_button)
     void onSkipClick(View view) {
         mQuizViewModel.onSkipButtonClick();
+    }
+
+    @OnClick(R.id.image_view_previous)
+    void onBackToPreviousQuestion(View view){
+
     }
 }
