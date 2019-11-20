@@ -4,8 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,11 +18,13 @@ import com.kubatov.quizapp.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnItemClickListener {
     private QuizViewModel mQuizViewModel;
     private QuizAdapter mQuizAdapter;
+    private int amount;
 
     public static final String SEEK_BAR = "amount";
     public static final String CATEGORY_NAME = "category";
@@ -29,6 +32,10 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
 
     @BindView(R.id.quiz_recycler_view)
     RecyclerView mQuizRecycler;
+    @BindView(R.id.quiz_question_amount)
+    TextView amountProgressView;
+    @BindView(R.id.quiz_recycler_view)
+    ProgressBar amountProgressBar;
 
     public static void start(Context context, int amount, int category, String difficultValue) {
         Intent fakeIntent = new Intent(context, QuizActivity.class);
@@ -42,11 +49,22 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        mQuizViewModel = ViewModelProviders.of(this)
-                .get(QuizViewModel.class);
-
+        mQuizViewModel = ViewModelProviders.of(this).get(QuizViewModel.class);
         ButterKnife.bind(this);
         initRecycler();
+        showQuizData();
+        initViewModel();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void initViewModel() {
+        mQuizViewModel.questions.observe(this, questions -> mQuizAdapter.setQuestions(questions));
+        mQuizViewModel.currentQuestionPosition.observe(this, position -> {
+
+            amountProgressView.setText((position + 1) + "/" + amount);
+            amountProgressBar.setProgress(position + 1);
+            amountProgressBar.setMax(amount);
+        });
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -56,27 +74,20 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
         mQuizRecycler.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         mQuizRecycler.setAdapter(mQuizAdapter);
         mQuizRecycler.setOnTouchListener((v, event) -> true);
-        showQuizData();
-
     }
 
     private void showQuizData() {
-        Intent fakeIntent = getIntent();
-        int amount = fakeIntent.getIntExtra(SEEK_BAR, 0);
-        int category = fakeIntent.getIntExtra(CATEGORY_NAME, 0);
-        String difficulty = fakeIntent.getStringExtra(DIFF_DIFFICULT);
-        getQuestionData(amount, category, difficulty);
+        mQuizViewModel.parseIntentData(getIntent());
+        amount = getIntent().getIntExtra(SEEK_BAR, 0);
     }
-
-    private void getQuestionData(Integer amount, Integer category, String difficulty) {
-
-        mQuizViewModel.questions.observe(this, questions -> mQuizAdapter.setQuestions(questions));
-        mQuizViewModel.initViews(amount, category, difficulty);
-    }
-
 
     @Override
     public void onAnswerClick(int questionPosition, int answerPosition) {
         mQuizViewModel.onAnswerClick(questionPosition, answerPosition);
+    }
+
+    @OnClick(R.id.skip_button)
+    void onSkipClick(View view) {
+        mQuizViewModel.onSkipButtonClick();
     }
 }

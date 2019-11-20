@@ -71,6 +71,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         }
 
         public void onBind(Questions questions) {
+            mTextQuizQuestion.setText(questions.getQuestion());
         }
     }
 
