@@ -22,19 +22,19 @@ import butterknife.OnClick;
 
 
 public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnItemClickListener {
-    private QuizViewModel mQuizViewModel;
-    private QuizAdapter mQuizAdapter;
-    private int amount;
-
     public static final String SEEK_BAR = "amount";
     public static final String CATEGORY_NAME = "category";
     public static final String DIFF_DIFFICULT = "difficult";
+
+    private QuizViewModel mQuizViewModel;
+    private QuizAdapter mQuizAdapter;
+    private int amount;
 
     @BindView(R.id.quiz_recycler_view)
     RecyclerView mQuizRecycler;
     @BindView(R.id.quiz_question_amount)
     TextView amountProgressView;
-    @BindView(R.id.quiz_recycler_view)
+    @BindView(R.id.quiz_progress_bar)
     ProgressBar amountProgressBar;
 
     public static void start(Context context, int amount, int category, String difficultValue) {
@@ -60,7 +60,6 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     private void initViewModel() {
         mQuizViewModel.questions.observe(this, questions -> mQuizAdapter.setQuestions(questions));
         mQuizViewModel.currentQuestionPosition.observe(this, position -> {
-
             amountProgressView.setText((position + 1) + "/" + amount);
             amountProgressBar.setProgress(position + 1);
             amountProgressBar.setMax(amount);

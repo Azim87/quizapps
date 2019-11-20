@@ -23,6 +23,13 @@ public class QuizViewModel extends ViewModel {
     SingleLiveEvent<Void> finishEvent = new SingleLiveEvent<>();
 
 
+    void parseIntentData(Intent fakeIntent) {
+        int amount = fakeIntent.getIntExtra(SEEK_BAR, 0);
+        int category = fakeIntent.getIntExtra(CATEGORY_NAME, 0);
+        String difficulty = fakeIntent.getStringExtra(DIFF_DIFFICULT);
+        initViews(amount, category, difficulty);
+    }
+
     private void initViews(Integer amount, Integer category, String difficulty) {
         currentQuestionPosition.setValue(0);
         App.quizRepository.getQuizQuestions(amount, category, difficulty, new IQuizRepository.OnQuizCallBack() {
@@ -36,15 +43,6 @@ public class QuizViewModel extends ViewModel {
 
             }
         });
-    }
-
-    void parseIntentData(Intent fakeIntent) {
-        int amount = fakeIntent.getIntExtra(SEEK_BAR, 0);
-        int category = fakeIntent.getIntExtra(CATEGORY_NAME, 0);
-        String difficulty = fakeIntent.getStringExtra(DIFF_DIFFICULT);
-
-        initViews(amount, category, difficulty);
-
     }
 
     void onAnswerClick(int questionPosition, int answerPosition) {
