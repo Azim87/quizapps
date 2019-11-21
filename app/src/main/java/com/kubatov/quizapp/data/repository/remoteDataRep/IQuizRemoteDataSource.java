@@ -4,5 +4,5 @@ import com.kubatov.quizapp.data.repository.IQuizRepository;
 
 public interface IQuizRemoteDataSource {
 
-    void getQuestions(int amount, Integer category, String difficulty, IQuizRepository.OnQuizCallBack onQuizCallBack);
+    void getQuestions(Integer amount, Integer category, String difficulty, IQuizRepository.OnQuizCallBack onQuizCallBack);
 }

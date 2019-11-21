@@ -9,23 +9,20 @@ import com.kubatov.quizapp.App;
 import com.kubatov.quizapp.core.SingleLiveEvent;
 import com.kubatov.quizapp.data.repository.IQuizRepository;
 import com.kubatov.quizapp.model.Questions;
-
-import java.util.ArrayList;
 import java.util.List;
-
 import static com.kubatov.quizapp.presentation.quiz.QuizActivity.CATEGORY_NAME;
 import static com.kubatov.quizapp.presentation.quiz.QuizActivity.DIFF_DIFFICULT;
 import static com.kubatov.quizapp.presentation.quiz.QuizActivity.SEEK_BAR;
 
 public class QuizViewModel extends ViewModel {
 
+    private IQuizRepository quizRepository;
     MutableLiveData<List<Questions>> questions = new MutableLiveData<>();
     MutableLiveData<Integer> currentQuestionPosition = new MutableLiveData<>();
     SingleLiveEvent<Void> finishEvent = new SingleLiveEvent<>();
 
-
     void parseIntentData(Intent fakeIntent) {
-        int amount = fakeIntent.getIntExtra(SEEK_BAR, 0);
+        int amount = fakeIntent.getIntExtra(SEEK_BAR, 5);
         int category = fakeIntent.getIntExtra(CATEGORY_NAME, 0);
         String difficulty = fakeIntent.getStringExtra(DIFF_DIFFICULT);
         initViews(amount, category, difficulty);
@@ -33,10 +30,13 @@ public class QuizViewModel extends ViewModel {
 
     private void initViews(Integer amount, Integer category, String difficulty) {
         currentQuestionPosition.setValue(0);
-        App.quizRepository.getQuizQuestions(amount, category, difficulty, new IQuizRepository.OnQuizCallBack() {
+        quizRepository = App.quizRepository;
+        quizRepository.getQuizQuestions(amount, category, difficulty, new IQuizRepository.OnQuizCallBack() {
             @Override
             public void onSuccess(List<Questions> quizResponse) {
-                questions.setValue(quizResponse);
+                if (quizResponse.size() != 0){
+                    questions.setValue(quizResponse);
+                }
             }
 
             @Override

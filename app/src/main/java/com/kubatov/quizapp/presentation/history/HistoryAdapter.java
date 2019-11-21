@@ -20,8 +20,9 @@ import butterknife.ButterKnife;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
     private ArrayList<HistoryModel> models = new ArrayList<>();
 
-    void setHistoryList(ArrayList<HistoryModel> modelList) {
-        models = modelList;
+    public void setHistoryList(ArrayList<HistoryModel> modelList) {
+        models.clear();
+        models.addAll(modelList);
         notifyDataSetChanged();
     }
 
@@ -35,10 +36,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
-        holder.mCategoryTextView.setText("Category: " + models.get(position).getCategory());
-        holder.mAnswersTextView.setText("Correct answers: " + models.get(position).getAnswers());
-        holder.mDifficultTextView.setText("Difficulty: " + models.get(position).getDifficulty());
-        holder.mTimeTextView.setText(models.get(position).getTime());
+        holder.onBind(models.get(position));
     }
 
     @Override
@@ -50,7 +48,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         }
     }
 
-    class HistoryViewHolder extends RecyclerView.ViewHolder {
+    public class HistoryViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.category_text_view_history)
         TextView mCategoryTextView;
         @BindView(R.id.difficulty_text_view)
@@ -63,6 +61,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         public HistoryViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+        }
+
+        public void onBind(HistoryModel historyModel) {
+            mCategoryTextView.setText("Category: " + historyModel.getCategory());
+            mAnswersTextView.setText("Correct answers: " + historyModel.getAnswers());
+            mDifficultTextView.setText("Difficulty: " + historyModel.getDifficulty());
+            mTimeTextView.setText(historyModel.getTime());
         }
     }
 }

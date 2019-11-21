@@ -38,7 +38,7 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
     }
 
     @Override
-    public void getQuestions(int amount, Integer category, String difficulty, IQuizRepository.OnQuizCallBack onQuizCallBack) {
+    public void getQuestions(Integer amount, Integer category, String difficulty, IQuizRepository.OnQuizCallBack onQuizCallBack) {
 
         Call<QuestionResponse> callQuestions = service.getQuestions(amount, category, null);
 
@@ -47,14 +47,12 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
             public void onResponse(Call<QuestionResponse> call, Response<QuestionResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-
                         for (int i = 0; i < response.body().getResults().size(); i++) {
                             Questions questions = response.body().getResults().get(i);
                             response.body().getResults().set(i, shuffleQuestions(questions));
                         }
-
                         onQuizCallBack.onSuccess(response.body().getResults());
-                        Log.d("ololo", "onResponse: " + response.body().getResults());
+
                     } else {
                         onQuizCallBack.onFailure(new Exception());
                     }
@@ -73,7 +71,7 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
     public interface IQuizService {
         @GET("/api.php")
         Call<QuestionResponse> getQuestions(
-                @Query("amount") int amount,
+                @Query("amount") Integer amount,
                 @Query("category") Integer category,
                 @Query("difficulty") String difficulty
         );
