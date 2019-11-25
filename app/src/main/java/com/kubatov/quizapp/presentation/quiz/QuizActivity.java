@@ -36,6 +36,8 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     TextView categoryTextView;
     @BindView(R.id.quiz_progress_bar)
     ProgressBar amountProgressBar;
+    @BindView(R.id.quiz_progress)
+    ProgressBar quizProgressBar;
 
     public static void start(Context context, int amount, int category, String difficultValue) {
         Intent fakeIntent = new Intent(context, QuizActivity.class);
@@ -55,6 +57,7 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
         ButterKnife.bind(this);
         initViewModel();
         getQuizData();
+        quizProgressBar.setVisibility(View.VISIBLE);
     }
 
     private void getQuizData() {
@@ -70,6 +73,7 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
         mQuizViewModel.questions.observe(this, questions -> {
             mQuizAdapter.setQuestions(questions);
             amountProgressBar.setMax(questions.size());
+            quizProgressBar.setVisibility(View.INVISIBLE);
         });
 
         mQuizViewModel.finishEvent.observe(this, aVoid -> finish());
