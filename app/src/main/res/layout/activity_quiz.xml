@@ -28,14 +28,18 @@
         android:layout_marginTop="@dimen/extra_big_margin_1"
         android:layout_marginEnd="@dimen/extra_big_margin_3"
         android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:fontFamily="@font/sf_text_semi_bold"
+        android:marqueeRepeatLimit="marquee_forever"
         android:text="Category"
         android:textAlignment="center"
         android:textColor="@color/colorOfTitleQuizActivity"
         android:textSize="@dimen/medium_text_1"
         app:layout_constraintBottom_toBottomOf="@+id/image_view_previous"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:singleLine="true" />
 
     <ProgressBar
         android:id="@+id/quiz_progress_bar"

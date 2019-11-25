@@ -31,7 +31,6 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
     private static final String EASY = "EASY";
     private static final String MEDIUM = "MEDIUM";
     private static final String HARD = "HARD";
-    private MainViewModel mViewModel;
 
     @BindView(R.id.spinner_category)
     NiceSpinner spinnerCategory;

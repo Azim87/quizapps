@@ -6,4 +6,142 @@
     android:layout_height="match_parent"
     tools:context=".presentation.result.ResultActivity">
 
+    <TextView
+        android:id="@+id/result_text_title"
+        style="@style/TextTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_text_title"
+        app:lottie_rawRes="@raw/ic_ok"
+        app:lottie_autoPlay="true"
+        android:layout_width="150dp"
+        android:layout_height="150dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/result_card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginTop="@dimen/extra_big_margin_1"
+        android:layout_marginEnd="@dimen/small_margin"
+        app:cardElevation="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lottie">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/result_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin_1"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:text="@string/result_category_mixed"
+                android:textColor="@color/colorResultText"
+                android:textSize="17sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/result_diff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="@string/difficulty"
+                app:layout_constraintBottom_toBottomOf="@+id/result_correct_ans"
+                app:layout_constraintEnd_toStartOf="@id/result_correct_ans"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/result_correct_ans" />
+
+            <TextView
+                android:id="@+id/result_correct_ans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/extra_big_margin_3"
+                android:text="@string/correct"
+                app:layout_constraintEnd_toEndOf="@+id/result_category"
+                app:layout_constraintHorizontal_bias="0.628"
+                app:layout_constraintStart_toStartOf="@+id/result_category"
+                app:layout_constraintTop_toBottomOf="@+id/result_category" />
+
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="192dp"
+                android:layout_marginEnd="46dp"
+                android:text="@string/result"
+                app:layout_constraintBottom_toBottomOf="@+id/result_correct_ans"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/result_diff"
+                app:layout_constraintTop_toTopOf="@+id/result_correct_ans" />
+
+            <TextView
+                android:id="@+id/result_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:text="@string/all"
+                android:textColor="@color/colorAmount"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/result_ans"
+                app:layout_constraintEnd_toEndOf="@+id/result_diff"
+                app:layout_constraintStart_toStartOf="@+id/result_diff"
+                app:layout_constraintTop_toTopOf="@+id/result_ans" />
+
+            <TextView
+                android:id="@+id/result_ans"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:text="@string/_0_0"
+                android:textColor="@color/colorAmount"
+                android:textSize="15sp"
+                android:layout_marginBottom="62dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/result_correct_ans"
+                app:layout_constraintStart_toStartOf="@+id/result_correct_ans"
+                app:layout_constraintTop_toBottomOf="@+id/result_correct_ans" />
+
+            <TextView
+                android:id="@+id/result_per"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sf_pro_text_bold"
+                android:text="@string/percent"
+                android:textColor="@color/colorAmount"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="@+id/result_ans"
+                app:layout_constraintEnd_toEndOf="@+id/result"
+                app:layout_constraintStart_toStartOf="@+id/result"
+                app:layout_constraintTop_toTopOf="@+id/result_ans" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/finish"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/result_card_view"
+        app:layout_constraintStart_toStartOf="@+id/result_card_view"
+        app:layout_constraintTop_toBottomOf="@+id/result_card_view" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,4 +21,13 @@
     <string name="leave_feedback">Leave feedback</string>
     <string name="version">v 1.0.0</string>
     <string name="skip">Skip</string>
+    <string name="result_title">Result</string>
+    <string name="result_category_mixed">Category: Mixed</string>
+    <string name="finish">Finish</string>
+    <string name="percent">0%</string>
+    <string name="_0_0">0/0</string>
+    <string name="all">All</string>
+    <string name="result">Result</string>
+    <string name="correct">Correct answers</string>
+    <string name="difficulty">Difficulty</string>
 </resources>

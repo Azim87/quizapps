@@ -15,12 +15,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HistoryFragment extends CoreFragment {
-
     @BindView(R.id.history_recycle_view)
     RecyclerView historyRecyclerView;
-
-    private HistoryViewModel mViewModel;
-    private HistoryAdapter historyAdapter;
 
     public static HistoryFragment newInstance() {
         return new HistoryFragment();
@@ -38,7 +34,7 @@ public class HistoryFragment extends CoreFragment {
     }
 
     private void initRecycler() {
-        historyAdapter = new HistoryAdapter();
+        HistoryAdapter historyAdapter = new HistoryAdapter();
         historyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         historyRecyclerView.setAdapter(historyAdapter);
         historyAdapter.setHistoryList(setFakeData());

@@ -1,6 +1,6 @@
 package com.kubatov.quizapp.presentation.quiz;
 
-import android.content.Intent;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -9,16 +9,14 @@ import com.kubatov.quizapp.App;
 import com.kubatov.quizapp.core.SingleLiveEvent;
 import com.kubatov.quizapp.data.QuizRepository.IQuizRepository;
 import com.kubatov.quizapp.model.Questions;
+import com.kubatov.quizapp.presentation.result.ResultActivity;
 
 import java.util.List;
-
-import static com.kubatov.quizapp.presentation.quiz.QuizActivity.CATEGORY_NAME;
-import static com.kubatov.quizapp.presentation.quiz.QuizActivity.DIFF_DIFFICULT;
-import static com.kubatov.quizapp.presentation.quiz.QuizActivity.SEEK_BAR;
 
 public class QuizViewModel extends ViewModel {
 
     private IQuizRepository quizRepository;
+    private List<Questions> questionsList;
     MutableLiveData<List<Questions>> questions = new MutableLiveData<>();
     MutableLiveData<Integer> currentQuestionPosition = new MutableLiveData<>();
     SingleLiveEvent<Void> finishEvent = new SingleLiveEvent<>();
@@ -35,10 +33,11 @@ public class QuizViewModel extends ViewModel {
 
             @Override
             public void onFailure(Exception e) {
-
+                Toast.makeText(App.instance, "No internet", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 
     void onAnswerClick(int questionPosition, int answerPosition) {
 
@@ -51,6 +50,7 @@ public class QuizViewModel extends ViewModel {
                 finishEvent.call();
             } else {
                 currentQuestionPosition.setValue(currentPosition + 1);
+
             }
         }
     }
