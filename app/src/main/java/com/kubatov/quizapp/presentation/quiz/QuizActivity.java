@@ -27,8 +27,6 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
 
     private QuizViewModel mQuizViewModel;
     private QuizAdapter mQuizAdapter;
-    private int amount;
-    private int pos;
 
     @BindView(R.id.quiz_recycler_view)
     RecyclerView mQuizRecycler;
@@ -56,7 +54,15 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
 
         ButterKnife.bind(this);
         initViewModel();
-        showQuizData();
+        getQuizData();
+    }
+
+    private void getQuizData() {
+        Intent intent = getIntent();
+        int amount = intent.getIntExtra(SEEK_BAR, 5);
+        int category = intent.getIntExtra(CATEGORY_NAME, 0);
+        String difficulty = intent.getStringExtra(DIFF_DIFFICULT);
+        mQuizViewModel.initViews(amount, category, difficulty);
     }
 
     @SuppressLint("SetTextI18n")
@@ -68,10 +74,10 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
 
         mQuizViewModel.finishEvent.observe(this, aVoid -> finish());
         mQuizViewModel.currentQuestionPosition.observe(this, position -> {
-            categoryTextView.setText(mQuizAdapter.getListPosition().get(position + 1).getCategory());
+            categoryTextView.setText(mQuizAdapter.getListPosition().get(position).getCategory());
             amountProgressView.setText(position + 1 + "/" + mQuizAdapter.getItemCount());
             amountProgressBar.setProgress(position + 1);
-            mQuizRecycler.smoothScrollToPosition(position + 1);
+            mQuizRecycler.smoothScrollToPosition(position);
         });
         initRecycler();
     }
@@ -83,11 +89,6 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
         mQuizRecycler.setAdapter(mQuizAdapter);
         mQuizRecycler.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         mQuizRecycler.setOnTouchListener((v, event) -> true);
-    }
-
-    private void showQuizData() {
-        mQuizViewModel.parseIntentData(getIntent());
-        amount = getIntent().getIntExtra(SEEK_BAR, 0);
     }
 
     @Override

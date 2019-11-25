@@ -23,22 +23,14 @@ public class QuizViewModel extends ViewModel {
     MutableLiveData<Integer> currentQuestionPosition = new MutableLiveData<>();
     SingleLiveEvent<Void> finishEvent = new SingleLiveEvent<>();
 
-    void parseIntentData(Intent fakeIntent) {
-        int amount = fakeIntent.getIntExtra(SEEK_BAR, 5);
-        int category = fakeIntent.getIntExtra(CATEGORY_NAME, 0);
-        String difficulty = fakeIntent.getStringExtra(DIFF_DIFFICULT);
-        initViews(amount, category, difficulty);
-    }
 
-    private void initViews(Integer amount, Integer category, String difficulty) {
-
+    public void initViews(Integer amount, Integer category, String difficulty) {
         quizRepository = App.quizRepository;
         quizRepository.getQuizQuestions(amount, category, difficulty, new IQuizRepository.OnQuizCallBack() {
             @Override
             public void onSuccess(List<Questions> quizResponse) {
                 questions.setValue(quizResponse);
                 currentQuestionPosition.setValue(0);
-
             }
 
             @Override
@@ -64,7 +56,7 @@ public class QuizViewModel extends ViewModel {
     }
 
     void onPreviousQuestion() {
-        if (currentQuestionPosition.getValue() >= 0) {
+        if (currentQuestionPosition.getValue() > 0) {
             currentQuestionPosition.setValue(currentQuestionPosition.getValue() - 1);
         } else {
             finishEvent.call();
