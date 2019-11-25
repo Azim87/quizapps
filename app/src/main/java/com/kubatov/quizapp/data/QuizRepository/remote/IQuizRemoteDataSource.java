@@ -1,6 +1,6 @@
-package com.kubatov.quizapp.data.repository.remoteDataRep;
+package com.kubatov.quizapp.data.QuizRepository.remote;
 
-import com.kubatov.quizapp.data.repository.IQuizRepository;
+import com.kubatov.quizapp.data.QuizRepository.IQuizRepository;
 
 public interface IQuizRemoteDataSource {
 

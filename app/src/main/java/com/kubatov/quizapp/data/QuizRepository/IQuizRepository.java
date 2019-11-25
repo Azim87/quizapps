@@ -1,4 +1,4 @@
-package com.kubatov.quizapp.data.repository;
+package com.kubatov.quizapp.data.QuizRepository;
 
 import com.kubatov.quizapp.model.Questions;
 import java.util.List;

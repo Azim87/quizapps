@@ -20,7 +20,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-
 public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnItemClickListener {
     public static final String SEEK_BAR = "amount";
     public static final String CATEGORY_NAME = "category";
@@ -29,6 +28,7 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     private QuizViewModel mQuizViewModel;
     private QuizAdapter mQuizAdapter;
     private int amount;
+    private int pos;
 
     @BindView(R.id.quiz_recycler_view)
     RecyclerView mQuizRecycler;
@@ -63,13 +63,13 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     private void initViewModel() {
         mQuizViewModel.questions.observe(this, questions -> {
             mQuizAdapter.setQuestions(questions);
-            categoryTextView.setText(questions.get(0).getCategory());
             amountProgressBar.setMax(questions.size());
         });
 
         mQuizViewModel.finishEvent.observe(this, aVoid -> finish());
         mQuizViewModel.currentQuestionPosition.observe(this, position -> {
-            amountProgressView.setText((position + 1) + "/" + amount);
+            categoryTextView.setText(mQuizAdapter.getListPosition().get(position + 1).getCategory());
+            amountProgressView.setText(position + 1 + "/" + mQuizAdapter.getItemCount());
             amountProgressBar.setProgress(position + 1);
             mQuizRecycler.smoothScrollToPosition(position + 1);
         });
@@ -102,6 +102,11 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
 
     @OnClick(R.id.image_view_previous)
     void onBackToPreviousQuestion(View view) {
+        mQuizViewModel.onPreviousQuestion();
+    }
+
+    @Override
+    public void onBackPressed() {
         mQuizViewModel.onPreviousQuestion();
     }
 }

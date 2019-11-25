@@ -1,9 +1,7 @@
-package com.kubatov.quizapp.data.repository.remoteDataRep;
+package com.kubatov.quizapp.data.QuizRepository.remote;
 
-import android.util.Log;
-
-import com.kubatov.quizapp.data.repository.IQuizRepository;
-import com.kubatov.quizapp.data.repository.remoteDataRep.model.QuestionResponse;
+import com.kubatov.quizapp.data.QuizRepository.IQuizRepository;
+import com.kubatov.quizapp.data.QuizRepository.remote.model.QuestionResponse;
 import com.kubatov.quizapp.model.Questions;
 
 import java.util.ArrayList;
@@ -31,7 +29,6 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
         ArrayList<String> answers = new ArrayList<>();
         answers.add(questions.getCorrectAnswers());
         answers.addAll(questions.getIncorrectAnswers());
-
         Collections.shuffle(answers);
         questions.setAnswers(answers);
         return questions;
@@ -52,7 +49,6 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
                             response.body().getResults().set(i, shuffleQuestions(questions));
                         }
                         onQuizCallBack.onSuccess(response.body().getResults());
-
                     } else {
                         onQuizCallBack.onFailure(new Exception());
                     }

@@ -1,4 +1,4 @@
-package com.kubatov.quizapp.data.repository.remoteDataRep.model;
+package com.kubatov.quizapp.data.QuizRepository.remote.model;
 
 import com.google.gson.annotations.SerializedName;
 import com.kubatov.quizapp.model.Category;

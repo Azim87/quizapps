@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.kubatov.quizapp.App;
 import com.kubatov.quizapp.core.SingleLiveEvent;
-import com.kubatov.quizapp.data.repository.IQuizRepository;
+import com.kubatov.quizapp.data.QuizRepository.IQuizRepository;
 import com.kubatov.quizapp.model.Questions;
+
 import java.util.List;
+
 import static com.kubatov.quizapp.presentation.quiz.QuizActivity.CATEGORY_NAME;
 import static com.kubatov.quizapp.presentation.quiz.QuizActivity.DIFF_DIFFICULT;
 import static com.kubatov.quizapp.presentation.quiz.QuizActivity.SEEK_BAR;
@@ -29,14 +31,14 @@ public class QuizViewModel extends ViewModel {
     }
 
     private void initViews(Integer amount, Integer category, String difficulty) {
-        currentQuestionPosition.setValue(0);
+
         quizRepository = App.quizRepository;
         quizRepository.getQuizQuestions(amount, category, difficulty, new IQuizRepository.OnQuizCallBack() {
             @Override
             public void onSuccess(List<Questions> quizResponse) {
-                if (quizResponse.size() != 0){
-                    questions.setValue(quizResponse);
-                }
+                questions.setValue(quizResponse);
+                currentQuestionPosition.setValue(0);
+
             }
 
             @Override
@@ -61,10 +63,10 @@ public class QuizViewModel extends ViewModel {
         }
     }
 
-    void onPreviousQuestion(){
-        if (currentQuestionPosition.getValue() >=0){
-            currentQuestionPosition.setValue(currentQuestionPosition.getValue() -1);
-        }else {
+    void onPreviousQuestion() {
+        if (currentQuestionPosition.getValue() >= 0) {
+            currentQuestionPosition.setValue(currentQuestionPosition.getValue() - 1);
+        } else {
             finishEvent.call();
         }
     }
