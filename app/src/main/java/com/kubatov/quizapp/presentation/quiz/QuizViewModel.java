@@ -9,7 +9,6 @@ import com.kubatov.quizapp.App;
 import com.kubatov.quizapp.core.SingleLiveEvent;
 import com.kubatov.quizapp.data.QuizRepository.IQuizRepository;
 import com.kubatov.quizapp.model.Questions;
-import com.kubatov.quizapp.presentation.result.ResultActivity;
 
 import java.util.List;
 
@@ -20,6 +19,7 @@ public class QuizViewModel extends ViewModel {
     MutableLiveData<List<Questions>> questions = new MutableLiveData<>();
     MutableLiveData<Integer> currentQuestionPosition = new MutableLiveData<>();
     SingleLiveEvent<Void> finishEvent = new SingleLiveEvent<>();
+    SingleLiveEvent<Void> openResultEvent = new SingleLiveEvent<>();
 
 
     public void initViews(Integer amount, Integer category, String difficulty) {
@@ -47,10 +47,10 @@ public class QuizViewModel extends ViewModel {
         Integer currentPosition = currentQuestionPosition.getValue();
         if (currentPosition != null) {
             if (currentPosition == questions.getValue().size() - 1) {
+                openResultEvent.call();
                 finishEvent.call();
             } else {
                 currentQuestionPosition.setValue(currentPosition + 1);
-
             }
         }
     }

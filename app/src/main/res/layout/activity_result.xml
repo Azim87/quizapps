@@ -135,10 +135,14 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:layout_width="wrap_content"
+        android:background="@drawable/result_finish_button_style"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
         android:text="@string/finish"
         android:textAllCaps="false"
+        android:textSize="@dimen/medium_text"
+        android:fontFamily="@font/sf_pro_display_heavy"
+        android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/result_card_view"
         app:layout_constraintStart_toStartOf="@+id/result_card_view"

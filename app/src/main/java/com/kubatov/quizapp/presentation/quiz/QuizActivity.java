@@ -5,12 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,6 +41,9 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     ProgressBar amountProgressBar;
     @BindView(R.id.quiz_progress)
     ProgressBar quizProgressBar;
+    @BindView(R.id.skip_button)
+    Button skipButton;
+
 
     public static void start(Context context, int amount, int category, String difficultValue) {
         Intent fakeIntent = new Intent(context, QuizActivity.class);
@@ -59,7 +63,9 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
         ButterKnife.bind(this);
         initViewModel();
         getQuizData();
+        amountProgressBar.setProgress(0);
         quizProgressBar.setVisibility(View.VISIBLE);
+        skipButton.setVisibility(View.INVISIBLE);
     }
 
     private void getQuizData() {
@@ -76,6 +82,13 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
             mQuizAdapter.setQuestions(questions);
             amountProgressBar.setMax(questions.size());
             quizProgressBar.setVisibility(View.INVISIBLE);
+            skipButton.setVisibility(View.VISIBLE);
+        });
+
+
+        mQuizViewModel.openResultEvent.observe(this, (Void aVoid) -> {
+            ResultActivity.start(QuizActivity.this);
+            finish();
         });
 
         mQuizViewModel.finishEvent.observe(this, aVoid -> finish());
