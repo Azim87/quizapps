@@ -3,18 +3,17 @@ package com.kubatov.quizapp.data.QuizRepository.local;
 import androidx.lifecycle.LiveData;
 
 import com.kubatov.quizapp.data.QuizRepository.local.model.QuizResult;
-import com.kubatov.quizapp.model.Questions;
 import com.kubatov.quizapp.model.ShortQuizResult;
 
 import java.util.List;
 
 public interface IQuizLocalDataSource {
 
-    QuizResult getQuizResult();
+    public QuizResult getQuizResult(int id);
 
-    long saveQuizResult(QuizResult quizResult);
+    public int saveQuizResult(QuizResult quizResult);
 
-    LiveData<List<Questions>> getAll(List<Questions> questions);
+    public LiveData<List<QuizResult>> getAll();
 
-    LiveData<List<ShortQuizResult>> getAllShort();
+    public LiveData<List<ShortQuizResult>> getAllShort();
 }

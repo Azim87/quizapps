@@ -10,10 +10,14 @@ import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.core.CoreActivity;
 
 public class ResultActivity extends CoreActivity {
+    private static String ID = "id";
     private ResultViewModel mResultViewModel;
 
-    public static void start(Context context){
-        context.startActivity(new Intent(context, ResultActivity.class));
+    public static void start(Context context, Integer id){
+        Intent intent = new Intent(context, ResultActivity.class);
+        intent.putExtra(ResultActivity.ID, id);
+        context.startActivity(intent);
+
     }
 
     @Override

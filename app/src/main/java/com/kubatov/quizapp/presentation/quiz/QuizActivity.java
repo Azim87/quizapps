@@ -78,17 +78,18 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
 
     @SuppressLint("SetTextI18n")
     private void initViewModel() {
-        mQuizViewModel.questions.observe(this, questions -> {
+        mQuizViewModel.mQuestions.observe(this, questions -> {
             mQuizAdapter.setQuestions(questions);
             amountProgressBar.setMax(questions.size());
             quizProgressBar.setVisibility(View.INVISIBLE);
             skipButton.setVisibility(View.VISIBLE);
         });
 
-
-        mQuizViewModel.openResultEvent.observe(this, (Void aVoid) -> {
-            ResultActivity.start(QuizActivity.this);
-            finish();
+        mQuizViewModel.openResultEvent.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer id) {
+                ResultActivity.start(QuizActivity.this, id);
+            }
         });
 
         mQuizViewModel.finishEvent.observe(this, aVoid -> finish());
@@ -97,6 +98,7 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
             amountProgressView.setText(position + 1 + "/" + mQuizAdapter.getItemCount());
             amountProgressBar.setProgress(position + 1);
             mQuizRecycler.smoothScrollToPosition(position);
+
         });
         initRecycler();
     }
@@ -106,7 +108,10 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
         mQuizAdapter = new QuizAdapter(this);
         mQuizRecycler.setHasFixedSize(true);
         mQuizRecycler.setAdapter(mQuizAdapter);
-        mQuizRecycler.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        mQuizRecycler.setLayoutManager(new LinearLayoutManager(
+                this,
+                RecyclerView.HORIZONTAL,
+                false));
         mQuizRecycler.setOnTouchListener((v, event) -> true);
     }
 
@@ -118,16 +123,15 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
     @OnClick(R.id.skip_button)
     void onSkipClick(View view) {
         mQuizViewModel.onSkipButtonClick();
-        //ResultActivity.start(this);
     }
 
     @OnClick(R.id.image_view_previous)
-    void onBackToPreviousQuestion(View view) {
-        mQuizViewModel.onPreviousQuestion();
+    void onBackPressed(View view) {
+        mQuizViewModel.onBackPressed();
     }
 
     @Override
     public void onBackPressed() {
-        mQuizViewModel.onPreviousQuestion();
+        mQuizViewModel.onBackPressed();
     }
 }

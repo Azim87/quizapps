@@ -1,5 +1,7 @@
 package com.kubatov.quizapp.model;
 
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -22,13 +24,17 @@ public class Questions {
 
     private List<String> answers;
 
-    public Questions(String category, String type, String difficulty, String question, String correctAnswers, List<String> incorrectAnswers) {
+    @Nullable
+    private Integer selectedAnswerPosition = null;
+
+    public Questions(String category, String type, String difficulty, String question, String correctAnswers, List<String> incorrectAnswers, int selectedAnswerPosition) {
         this.category = category;
         this.type = type;
         this.difficulty = difficulty;
         this.question = question;
         this.correctAnswers = correctAnswers;
         this.incorrectAnswers = incorrectAnswers;
+        this.selectedAnswerPosition = selectedAnswerPosition;
     }
 
     public List<String> getAnswers() {
@@ -85,6 +91,15 @@ public class Questions {
 
     public void setAnswers(List<String> answers) {
         this.answers = answers;
+    }
+
+    @Nullable
+    public Integer getSelectedAnswerPosition() {
+        return selectedAnswerPosition;
+    }
+
+    public void setSelectedAnswerPosition(Integer selectedAnswerPosition) {
+        this.selectedAnswerPosition = selectedAnswerPosition;
     }
 
     @Override

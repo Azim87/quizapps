@@ -1,5 +1,6 @@
 package com.kubatov.quizapp.presentation.quiz;
 
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
@@ -8,26 +9,32 @@ import androidx.lifecycle.ViewModel;
 import com.kubatov.quizapp.App;
 import com.kubatov.quizapp.core.SingleLiveEvent;
 import com.kubatov.quizapp.data.QuizRepository.IQuizRepository;
+import com.kubatov.quizapp.data.QuizRepository.local.QuizLocalDataSource;
+import com.kubatov.quizapp.data.QuizRepository.local.model.QuizResult;
 import com.kubatov.quizapp.model.Questions;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class QuizViewModel extends ViewModel {
 
-    private IQuizRepository quizRepository;
     private List<Questions> questionsList;
-    MutableLiveData<List<Questions>> questions = new MutableLiveData<>();
+    private IQuizRepository quizRepository = App.quizRepository;
+    private QuizLocalDataSource localDataSource = App.localDataSource;
+    MutableLiveData<List<Questions>> mQuestions = new MutableLiveData<>();
     MutableLiveData<Integer> currentQuestionPosition = new MutableLiveData<>();
-    SingleLiveEvent<Void> finishEvent = new SingleLiveEvent<>();
-    SingleLiveEvent<Void> openResultEvent = new SingleLiveEvent<>();
+    SingleLiveEvent<Integer> finishEvent = new SingleLiveEvent<>();
+    SingleLiveEvent<Integer> openResultEvent = new SingleLiveEvent<>();
+
 
 
     public void initViews(Integer amount, Integer category, String difficulty) {
-        quizRepository = App.quizRepository;
         quizRepository.getQuizQuestions(amount, category, difficulty, new IQuizRepository.OnQuizCallBack() {
             @Override
             public void onSuccess(List<Questions> quizResponse) {
-                questions.setValue(quizResponse);
+                questionsList = quizResponse;
+                mQuestions.setValue(quizResponse);
                 currentQuestionPosition.setValue(0);
             }
 
@@ -38,28 +45,74 @@ public class QuizViewModel extends ViewModel {
         });
     }
 
+    private int getCorrectAnswersAmount() {
+        int correctAnswers = 0;
 
-    void onAnswerClick(int questionPosition, int answerPosition) {
+        for (Questions question : questionsList) {
+            Integer selectedAnswerPosition = question.getSelectedAnswerPosition();
 
+            if (selectedAnswerPosition != null &&
+                    selectedAnswerPosition >= 0 &&
+                    question.getAnswers().get(selectedAnswerPosition)
+                            .equals(question.getCorrectAnswers())) {
+                correctAnswers++;
+            }
+        }
+
+        return correctAnswers;
     }
 
-    void onSkipButtonClick() {
-        Integer currentPosition = currentQuestionPosition.getValue();
-        if (currentPosition != null) {
-            if (currentPosition == questions.getValue().size() - 1) {
-                openResultEvent.call();
-                finishEvent.call();
-            } else {
-                currentQuestionPosition.setValue(currentPosition + 1);
-            }
+    void quizFinish() {
+
+        QuizResult quizResult = new QuizResult(
+                0,
+                questionsList,
+                getCorrectAnswersAmount(),
+                new Date()
+        );
+
+
+        int resultId = localDataSource.saveQuizResult(quizResult);
+
+        Log.d("ololo ", "added result id : " + resultId);
+        finishEvent.call();
+        openResultEvent.setValue(resultId);
+    }
+
+
+    void onAnswerClick(int questionPosition, int answerPosition) {
+        if (currentQuestionPosition.getValue() == null || mQuestions != null) {
+            return;
+        }
+
+        Questions questions = questionsList.get(questionPosition);
+        questions.setSelectedAnswerPosition(answerPosition);
+        questionsList.set(questionPosition, questions);
+        mQuestions.setValue(questionsList);
+
+        if (questionPosition == questionsList.size() -1 ){
+            quizFinish();
+        }else {
+            currentQuestionPosition.setValue(questionPosition + 1);
         }
     }
 
-    void onPreviousQuestion() {
-        if (currentQuestionPosition.getValue() > 0) {
-            currentQuestionPosition.setValue(currentQuestionPosition.getValue() - 1);
-        } else {
-            finishEvent.call();
+    void onSkipButtonClick() {
+        quizFinish();
+        /*Integer currentPosition = currentQuestionPosition.getValue();
+        if (currentPosition != null) {
+            onAnswerClick(currentPosition, -1);
+        }*/
+    }
+
+    void onBackPressed() {
+        Integer currentPosition = currentQuestionPosition.getValue();
+        if (currentPosition != null) {
+            if (currentPosition == 0) {
+                finishEvent.call();
+            } else {
+                currentQuestionPosition.setValue(currentPosition - 1);
+            }
         }
     }
 }

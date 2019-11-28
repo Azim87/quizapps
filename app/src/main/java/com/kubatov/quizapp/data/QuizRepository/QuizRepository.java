@@ -3,22 +3,18 @@ package com.kubatov.quizapp.data.QuizRepository;
 
 import androidx.annotation.Nullable;
 
-import com.kubatov.quizapp.data.QuizRepository.local.QuizLocalDataSource;
 import com.kubatov.quizapp.data.QuizRepository.remote.QuizRemoteDataSource;
 import com.kubatov.quizapp.model.Questions;
+
 import java.util.List;
 
 public class QuizRepository implements IQuizRepository {
 
-    @Nullable private QuizRemoteDataSource mRemoteDataSource;
-    @Nullable private QuizLocalDataSource mLocalDataSource;
+    @Nullable
+    private QuizRemoteDataSource mRemoteDataSource;
 
-    public QuizRepository(
-            @Nullable QuizRemoteDataSource remoteDataSource,
-            @Nullable QuizLocalDataSource localDataSource) {
-
+    public QuizRepository(@Nullable QuizRemoteDataSource remoteDataSource) {
         mRemoteDataSource = remoteDataSource;
-        mLocalDataSource = localDataSource;
     }
 
     @Override
@@ -28,23 +24,23 @@ public class QuizRepository implements IQuizRepository {
             String difficulty,
             OnQuizCallBack questionCallBack) {
 
-        if (mRemoteDataSource != null && mLocalDataSource != null) {
+        if (mRemoteDataSource != null) {
             mRemoteDataSource
                     .getQuestions(
                             amount,
                             category,
                             difficulty,
-            new OnQuizCallBack() {
-                @Override
-                public void onSuccess(List<Questions> quizResponse) {
-                    questionCallBack.onSuccess(quizResponse);
-                }
+                            new OnQuizCallBack() {
+                                @Override
+                                public void onSuccess(List<Questions> quizResponse) {
+                                    questionCallBack.onSuccess(quizResponse);
+                                }
 
-                @Override
-                public void onFailure(Exception e) {
-                    questionCallBack.onFailure(new Exception("not successful"));
-                }
-            });
+                                @Override
+                                public void onFailure(Exception e) {
+                                    questionCallBack.onFailure(new Exception("not successful"));
+                                }
+                            });
 
         }
     }

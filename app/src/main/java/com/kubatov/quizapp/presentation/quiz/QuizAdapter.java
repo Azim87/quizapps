@@ -53,7 +53,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
     }
 
 
-    public class QuizViewHolder extends RecyclerView.ViewHolder {
+    public class QuizViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         OnItemClickListener listener;
 
         @BindView(R.id.quiz_question)
@@ -72,12 +72,22 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
             super(itemView);
             this.listener = listener;
             ButterKnife.bind(this, itemView);
+            mTextQuizQuestionAnswer1.setOnClickListener(this);
+            mTextQuizQuestionAnswer2.setOnClickListener(this);
+            mTextQuizQuestionAnswer3.setOnClickListener(this);
+            mTextQuizQuestionAnswer4.setOnClickListener(this);
         }
 
 
         public void onBind(Questions questions) {
             mTextQuizQuestion.setText(questions.getQuestion());
-            mTextQuizQuestionAnswer1.setText(questions.getCategory());
+            mTextQuizQuestionAnswer1.setText(questions.getAnswers().get(0));
+            mTextQuizQuestionAnswer2.setText(questions.getAnswers().get(1));
+        }
+
+        @Override
+        public void onClick(View v) {
+
         }
     }
 
