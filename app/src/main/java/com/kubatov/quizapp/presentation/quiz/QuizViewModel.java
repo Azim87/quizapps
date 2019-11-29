@@ -1,6 +1,5 @@
 package com.kubatov.quizapp.presentation.quiz;
 
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
@@ -13,7 +12,6 @@ import com.kubatov.quizapp.data.QuizRepository.local.QuizLocalDataSource;
 import com.kubatov.quizapp.data.QuizRepository.local.model.QuizResult;
 import com.kubatov.quizapp.model.Questions;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,8 +24,6 @@ public class QuizViewModel extends ViewModel {
     MutableLiveData<Integer> currentQuestionPosition = new MutableLiveData<>();
     SingleLiveEvent<Integer> finishEvent = new SingleLiveEvent<>();
     SingleLiveEvent<Integer> openResultEvent = new SingleLiveEvent<>();
-
-
 
     public void initViews(Integer amount, Integer category, String difficulty) {
         quizRepository.getQuizQuestions(amount, category, difficulty, new IQuizRepository.OnQuizCallBack() {
@@ -71,17 +67,14 @@ public class QuizViewModel extends ViewModel {
                 new Date()
         );
 
-
         int resultId = localDataSource.saveQuizResult(quizResult);
-
-        Log.d("ololo ", "added result id : " + resultId);
         finishEvent.call();
         openResultEvent.setValue(resultId);
     }
 
 
     void onAnswerClick(int questionPosition, int answerPosition) {
-        if (currentQuestionPosition.getValue() == null || mQuestions != null) {
+        if (currentQuestionPosition.getValue() == null || mQuestions == null) {
             return;
         }
 
@@ -90,19 +83,18 @@ public class QuizViewModel extends ViewModel {
         questionsList.set(questionPosition, questions);
         mQuestions.setValue(questionsList);
 
-        if (questionPosition == questionsList.size() -1 ){
+        if (questionPosition == questionsList.size() - 1) {
             quizFinish();
-        }else {
+        } else {
             currentQuestionPosition.setValue(questionPosition + 1);
         }
     }
 
     void onSkipButtonClick() {
-        quizFinish();
-        /*Integer currentPosition = currentQuestionPosition.getValue();
+        Integer currentPosition = currentQuestionPosition.getValue();
         if (currentPosition != null) {
             onAnswerClick(currentPosition, -1);
-        }*/
+        }
     }
 
     void onBackPressed() {

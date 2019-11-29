@@ -2,19 +2,27 @@ package com.kubatov.quizapp.presentation.history;
 
 import android.view.View;
 
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.core.CoreFragment;
 import com.kubatov.quizapp.model.HistoryModel;
+import com.kubatov.quizapp.model.ShortQuizResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HistoryFragment extends CoreFragment {
+    private HistoryViewModel historyViewModel;
+    private  HistoryAdapter historyAdapter;
+
+
     @BindView(R.id.history_recycle_view)
     RecyclerView historyRecyclerView;
 
@@ -29,22 +37,23 @@ public class HistoryFragment extends CoreFragment {
 
     @Override
     protected void initViewAfterCreated(View view) {
+        historyViewModel = ViewModelProviders.of(this).get(HistoryViewModel.class);
         ButterKnife.bind(this, view);
         initRecycler();
     }
 
-    private void initRecycler() {
-        HistoryAdapter historyAdapter = new HistoryAdapter();
-        historyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        historyRecyclerView.setAdapter(historyAdapter);
-        historyAdapter.setHistoryList(setFakeData());
+    private void initHistoryViewModel(){
+        historyViewModel.shortQuizResult.observe(this, new Observer<List<ShortQuizResult>>() {
+            @Override
+            public void onChanged(List<ShortQuizResult> shortQuizResults) {
+                historyAdapter.setHistoryList(shortQuizResults);
+            }
+        });
     }
 
-    private ArrayList<HistoryModel> setFakeData() {
-        ArrayList<HistoryModel> models = new ArrayList<>();
-        models.add(new HistoryModel("Music", "Easy", "12:43", 8));
-        models.add(new HistoryModel("VideoGames", "Hard", "22:43", 2));
-        models.add(new HistoryModel("Science: Computers", "Medium", "11:45", 4));
-        return models;
+    private void initRecycler() {
+        historyAdapter = new HistoryAdapter();
+        historyRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        historyRecyclerView.setAdapter(historyAdapter);
     }
 }

@@ -11,16 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.model.HistoryModel;
+import com.kubatov.quizapp.model.ShortQuizResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder> {
-    private ArrayList<HistoryModel> models = new ArrayList<>();
+    private List<ShortQuizResult> models = new ArrayList<>();
 
-    public void setHistoryList(ArrayList<HistoryModel> modelList) {
+    public void setHistoryList(List<ShortQuizResult> modelList) {
         models.clear();
         models.addAll(modelList);
         notifyDataSetChanged();
@@ -63,11 +65,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             ButterKnife.bind(this, itemView);
         }
 
-        public void onBind(HistoryModel historyModel) {
-            mCategoryTextView.setText("Category: " + historyModel.getCategory());
-            mAnswersTextView.setText("Correct answers: " + historyModel.getAnswers());
-            mDifficultTextView.setText("Difficulty: " + historyModel.getDifficulty());
-            mTimeTextView.setText(historyModel.getTime());
+        public void onBind(ShortQuizResult shortQuizResult) {
+            mCategoryTextView.setText("Category: " );
+            mAnswersTextView.setText("Correct answers: " + shortQuizResult.getCorrectAnswers());
+            mDifficultTextView.setText("Difficulty: " + shortQuizResult.getQuestionsAmount());
+            mTimeTextView.setText((CharSequence) shortQuizResult.getCreatedAt());
         }
     }
 }

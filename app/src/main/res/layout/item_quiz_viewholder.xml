@@ -19,15 +19,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <TextView
+        android:id="@+id/quiz_question_boolean_1"
+        style="@style/QuizQuestionAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/quiz_answer_view_white"
+        android:text="Yes"
+        android:visibility="invisible"
+        android:textColor="@color/colorOfStartButtonBackground"
+        app:layout_constraintTop_toBottomOf="@id/quiz_question" />
+
+    <TextView
+        android:id="@+id/quiz_question_boolean_2"
+        style="@style/QuizQuestionAnswers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_small_margin_2"
+        android:background="@drawable/quiz_answer_view_white"
+        android:text="No"
+        android:visibility="invisible"
+        android:textColor="@color/colorOfStartButtonBackground"
+        app:layout_constraintTop_toBottomOf="@+id/quiz_question_boolean_1" />
+
     <TextView
         android:id="@+id/quiz_question_answer_1"
         style="@style/QuizQuestionAnswers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/extra_big_margin_2"
-        android:background="@drawable/quiz_answer_view_blue"
+        android:background="@drawable/quiz_answer_view_white"
         android:text="Colombo"
-        android:textColor="@color/white"
+        android:textColor="@color/colorOfStartButtonBackground"
         app:layout_constraintTop_toBottomOf="@id/quiz_question" />
 
     <TextView

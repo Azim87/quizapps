@@ -18,8 +18,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder> {
+    public final static String MULTIPLE = "multiple";
+    public final static String TRUE = "true";
+    public final static String BOOLEAN = "boolean";
     private List<Questions> mQuestions = new ArrayList<>();
     private OnItemClickListener mListener;
+    private int positionOfAnswer;
 
     public QuizAdapter(OnItemClickListener onItemClick) {
         mListener = onItemClick;
@@ -48,7 +52,7 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         notifyDataSetChanged();
     }
 
-    public List<Questions> getListPosition(){
+    public List<Questions> getListPosition() {
         return mQuestions;
     }
 
@@ -66,6 +70,10 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         TextView mTextQuizQuestionAnswer3;
         @BindView(R.id.quiz_question_answer_4)
         TextView mTextQuizQuestionAnswer4;
+        @BindView(R.id.quiz_question_boolean_1)
+        TextView mTextQuizQuestionBoolean1;
+        @BindView(R.id.quiz_question_boolean_2)
+        TextView mTextQuizQuestionBoolean2;
 
 
         public QuizViewHolder(@NonNull View itemView, QuizAdapter.OnItemClickListener listener) {
@@ -81,13 +89,53 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
 
         public void onBind(Questions questions) {
             mTextQuizQuestion.setText(questions.getQuestion());
+            if (questions.getType().equals(MULTIPLE)) {
+                showMultipleQuestion(questions);
+                positionOfAnswer = 0;
+            } else {
+                hideQuestionContainers();
+            }
+            if (questions.getType().equals(BOOLEAN)) {
+                if (questions.getCorrectAnswers().equals(TRUE)) {
+                    positionOfAnswer = R.id.quiz_question_boolean_1;
+                } else {
+                    positionOfAnswer = R.id.quiz_question_boolean_2;
+                }
+            }
+        }
+
+        private void hideQuestionContainers() {
+            mTextQuizQuestionBoolean1.setVisibility(View.INVISIBLE);
+            mTextQuizQuestionBoolean2.setVisibility(View.INVISIBLE);
+            mTextQuizQuestionAnswer1.setVisibility(View.VISIBLE);
+            mTextQuizQuestionAnswer2.setVisibility(View.VISIBLE);
+            mTextQuizQuestionAnswer3.setVisibility(View.VISIBLE);
+            mTextQuizQuestionAnswer4.setVisibility(View.VISIBLE);
+        }
+
+        private void showMultipleQuestion(Questions questions) {
             mTextQuizQuestionAnswer1.setText(questions.getAnswers().get(0));
             mTextQuizQuestionAnswer2.setText(questions.getAnswers().get(1));
+            mTextQuizQuestionAnswer3.setText(questions.getAnswers().get(2));
+            mTextQuizQuestionAnswer4.setText(questions.getAnswers().get(3));
         }
 
         @Override
         public void onClick(View v) {
-
+            switch (v.getId()) {
+                case R.id.quiz_question_answer_1:
+                    listener.onAnswerClick(getAdapterPosition(), 0);
+                    break;
+                case R.id.quiz_question_answer_2:
+                    listener.onAnswerClick(getAdapterPosition(), 1);
+                    break;
+                case R.id.quiz_question_answer_3:
+                    listener.onAnswerClick(getAdapterPosition(), 2);
+                    break;
+                case R.id.quiz_question_answer_4:
+                    listener.onAnswerClick(getAdapterPosition(), 3);
+                    break;
+            }
         }
     }
 
