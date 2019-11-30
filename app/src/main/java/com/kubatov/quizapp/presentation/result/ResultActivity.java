@@ -2,18 +2,22 @@ package com.kubatov.quizapp.presentation.result;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.lifecycle.Observer;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.kubatov.quizapp.R;
-import com.kubatov.quizapp.core.CoreActivity;
-import com.kubatov.quizapp.data.QuizRepository.local.model.QuizResult;
+import com.kubatov.quizapp.presentation.quiz.QuizActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
-public class ResultActivity extends CoreActivity {
+public class ResultActivity extends AppCompatActivity {
     private static String ID = "id";
     private ResultViewModel mResultViewModel;
 
@@ -25,6 +29,8 @@ public class ResultActivity extends CoreActivity {
     TextView resultDifficulty;
     @BindView(R.id.result_per)
     TextView resultPercent;
+    @BindView(R.id.result_button_finish)
+    Button resultFinishButton;
 
     public static void start(Context context, Integer id) {
         Intent intent = new Intent(context, ResultActivity.class);
@@ -33,17 +39,28 @@ public class ResultActivity extends CoreActivity {
     }
 
     @Override
-    protected int getActivityLayout() {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_result);
+        ButterKnife.bind(this);
         mResultViewModel = ViewModelProviders.of(this).get(ResultViewModel.class);
         initResultViewModel();
-        return R.layout.activity_result;
+        finishResult();
     }
 
 
     private void initResultViewModel() {
         mResultViewModel.getQuizResults(getIntent().getIntExtra(ID, 0));
         mResultViewModel.quizResultMutableLiveData.observe(this, quizResult -> {
+            resultCorrectAnswers.setText(quizResult.getCorrectAnswers() + "/" + quizResult.getQuestions().size());
+            Log.d("ololo", "initResultViewModel: " + quizResult.getCorrectAnswers());
+        });
+    }
 
+    private void finishResult() {
+        resultFinishButton.setOnClickListener(v -> {
+            startActivity(new Intent(ResultActivity.this, QuizActivity.class));
+            finish();
         });
     }
 }

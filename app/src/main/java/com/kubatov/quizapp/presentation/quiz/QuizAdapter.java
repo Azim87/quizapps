@@ -1,5 +1,6 @@
 package com.kubatov.quizapp.presentation.quiz;
 
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,33 +85,44 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
             mTextQuizQuestionAnswer2.setOnClickListener(this);
             mTextQuizQuestionAnswer3.setOnClickListener(this);
             mTextQuizQuestionAnswer4.setOnClickListener(this);
+            mTextQuizQuestionBoolean1.setOnClickListener(this);
+            mTextQuizQuestionBoolean2.setOnClickListener(this);
         }
 
 
         public void onBind(Questions questions) {
-            mTextQuizQuestion.setText(questions.getQuestion());
+            mTextQuizQuestion.setText(Html.fromHtml(questions.getQuestion()));
             if (questions.getType().equals(MULTIPLE)) {
                 showMultipleQuestion(questions);
-                positionOfAnswer = 0;
+                hideQuestionBoolean();
             } else {
-                hideQuestionContainers();
+                hideQuestionMultiple();
             }
             if (questions.getType().equals(BOOLEAN)) {
                 if (questions.getCorrectAnswers().equals(TRUE)) {
-                    positionOfAnswer = R.id.quiz_question_boolean_1;
+                    mTextQuizQuestionBoolean1.setText("True");
                 } else {
-                    positionOfAnswer = R.id.quiz_question_boolean_2;
+                    mTextQuizQuestionBoolean2.setText("No");
                 }
             }
         }
 
-        private void hideQuestionContainers() {
+        private void hideQuestionBoolean() {
             mTextQuizQuestionBoolean1.setVisibility(View.INVISIBLE);
             mTextQuizQuestionBoolean2.setVisibility(View.INVISIBLE);
             mTextQuizQuestionAnswer1.setVisibility(View.VISIBLE);
             mTextQuizQuestionAnswer2.setVisibility(View.VISIBLE);
             mTextQuizQuestionAnswer3.setVisibility(View.VISIBLE);
             mTextQuizQuestionAnswer4.setVisibility(View.VISIBLE);
+        }
+
+        private void hideQuestionMultiple() {
+            mTextQuizQuestionBoolean1.setVisibility(View.VISIBLE);
+            mTextQuizQuestionBoolean2.setVisibility(View.VISIBLE);
+            mTextQuizQuestionAnswer1.setVisibility(View.INVISIBLE);
+            mTextQuizQuestionAnswer2.setVisibility(View.INVISIBLE);
+            mTextQuizQuestionAnswer3.setVisibility(View.INVISIBLE);
+            mTextQuizQuestionAnswer4.setVisibility(View.INVISIBLE);
         }
 
         private void showMultipleQuestion(Questions questions) {
@@ -124,9 +136,11 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.quiz_question_answer_1:
+                case R.id.quiz_question_boolean_1:
                     listener.onAnswerClick(getAdapterPosition(), 0);
                     break;
                 case R.id.quiz_question_answer_2:
+                case R.id.quiz_question_boolean_2:
                     listener.onAnswerClick(getAdapterPosition(), 1);
                     break;
                 case R.id.quiz_question_answer_3:

@@ -37,7 +37,7 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
     @Override
     public void getQuestions(Integer amount, Integer category, String difficulty, IQuizRepository.OnQuizCallBack onQuizCallBack) {
 
-        Call<QuestionResponse> callQuestions = service.getQuestions(amount, category, null);
+        Call<QuestionResponse> callQuestions = service.getQuestions(amount, category, difficulty);
 
         callQuestions.enqueue(new Callback<QuestionResponse>() {
             @Override
