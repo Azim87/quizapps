@@ -73,10 +73,9 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
         int amount = intent.getIntExtra(SEEK_BAR, 5);
         int category = intent.getIntExtra(CATEGORY_NAME, 0);
 
-
         String difficulty = intent.getStringExtra(DIFF_DIFFICULT).toLowerCase();
         if (difficulty.equals("any difficulty")){
-            difficulty = null;
+            difficulty = "";
         }
         mQuizViewModel.initViews(amount, category, difficulty);
     }
@@ -92,7 +91,9 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
 
         mQuizViewModel.openResultEvent.observe(this, new Observer<Integer>() {
             @Override
+
             public void onChanged(Integer id) {
+                finish();
                 ResultActivity.start(QuizActivity.this, id);
             }
         });

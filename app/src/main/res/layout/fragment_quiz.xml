@@ -49,7 +49,7 @@
         app:layout_constraintStart_toEndOf="@+id/quiz_amount"
         app:layout_constraintTop_toTopOf="@+id/quiz_amount" />
 
-    <androidx.appcompat.widget.AppCompatSeekBar
+    <SeekBar
         android:id="@+id/seek_bar_amount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -58,6 +58,8 @@
         android:layout_marginEnd="@dimen/seek_bar_extra_big_margin"
         android:max="50"
         android:progress="10"
+        android:thumb="@drawable/seek_bar_thumb"
+        android:progressDrawable="@drawable/seek_bar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_amount" />

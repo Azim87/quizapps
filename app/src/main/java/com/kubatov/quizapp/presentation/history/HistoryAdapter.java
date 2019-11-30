@@ -13,6 +13,7 @@ import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.model.HistoryModel;
 import com.kubatov.quizapp.model.ShortQuizResult;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,10 +67,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         }
 
         public void onBind(ShortQuizResult shortQuizResult) {
-            mCategoryTextView.setText("Category: " );
-            mAnswersTextView.setText("Correct answers: " + shortQuizResult.getCorrectAnswers());
-            mDifficultTextView.setText("Difficulty: " + shortQuizResult.getQuestionsAmount());
-            mTimeTextView.setText((CharSequence) shortQuizResult.getCreatedAt());
+            mCategoryTextView.setText(shortQuizResult.getCategory() );
+            mAnswersTextView.setText("Correct answers: " + shortQuizResult.getCorrectAnswers() + "/" + shortQuizResult.getQuestionsAmount());
+            mDifficultTextView.setText(shortQuizResult.getDifficulty().toUpperCase());
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm");
+            mTimeTextView.setText(simpleDateFormat.format(shortQuizResult.getCreatedAt()));
         }
     }
 }

@@ -42,9 +42,16 @@ public class QuizLocalDataSource implements IQuizLocalDataSource {
                         result.getId(),
                         result.getQuestions().size(),
                         result.getCorrectAnswers(),
-                        result.getCreatedAt()));
+                        result.getCreatedAt(),
+                        result.getQuestions().get(0).getCategory(),
+                        result.getQuestions().get(0).getDifficulty()));
             }
             return shortQuizResults;
         });
+    }
+
+    @Override
+    public int deleteAll() {
+        return mHistoryDao.deleteAll();
     }
 }

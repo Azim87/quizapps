@@ -16,4 +16,7 @@ public interface IQuizLocalDataSource {
     public LiveData<List<QuizResult>> getAll();
 
     public LiveData<List<ShortQuizResult>> getAllShort();
+
+    public int deleteAll();
+
 }

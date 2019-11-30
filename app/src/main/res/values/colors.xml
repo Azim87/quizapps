@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#D2CFCF</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorSplash">#FFFFFF</color>
     <color name="colorOfStartButton">#fff</color>
@@ -15,4 +15,8 @@
     <color name="colorAmount">#3F3356</color>
     <color name="colorOfTitleQuizActivity">#1A051D</color>
     <color name="colorResultText">#1F2041</color>
+
+    <color name="seek_bar_background">#D2CFCF</color>
+    <color name="seek_bar_progress">#6979F8</color>
+    <color name="seek_bar_secondary_progress">#3399CC</color>
 </resources>

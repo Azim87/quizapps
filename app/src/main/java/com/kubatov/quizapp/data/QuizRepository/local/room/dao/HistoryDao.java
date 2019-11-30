@@ -2,7 +2,6 @@ package com.kubatov.quizapp.data.QuizRepository.local.room.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -18,9 +17,9 @@ public interface HistoryDao {
     @Query("SELECT * FROM quiz_result WHERE id=:id")
     QuizResult get(int id);
 
-    @Delete
-    void delete(QuizResult result);
+    @Query("DELETE FROM quiz_result ")
+    int deleteAll();
 
-    @Query("SELECT * FROM quiz_result")
+    @Query("SELECT * FROM quiz_result ORDER BY ID DESC")
     LiveData<List<QuizResult>> getAll();
 }

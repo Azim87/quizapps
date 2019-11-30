@@ -48,7 +48,8 @@ public class QuizViewModel extends ViewModel {
             Integer selectedAnswerPosition = question.getSelectedAnswerPosition();
 
             if (selectedAnswerPosition != null && selectedAnswerPosition >= 0 &&
-                    question.getAnswers().get(selectedAnswerPosition).equals(question.getCorrectAnswers())) {
+                    question.getAnswers().get(selectedAnswerPosition)
+                            .equals(question.getCorrectAnswers())) {
                 correctAnswers++;
             }
         }

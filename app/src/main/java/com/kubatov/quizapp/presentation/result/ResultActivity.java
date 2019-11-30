@@ -21,16 +21,11 @@ public class ResultActivity extends AppCompatActivity {
     private static String ID = "id";
     private ResultViewModel mResultViewModel;
 
-    @BindView(R.id.result_category)
-    TextView resultCategory;
-    @BindView(R.id.result_ans)
-    TextView resultCorrectAnswers;
-    @BindView(R.id.result_all)
-    TextView resultDifficulty;
-    @BindView(R.id.result_per)
-    TextView resultPercent;
-    @BindView(R.id.result_button_finish)
-    Button resultFinishButton;
+    @BindView(R.id.result_category) TextView resultCategory;
+    @BindView(R.id.result_ans) TextView resultCorrectAnswers;
+    @BindView(R.id.result_all) TextView resultDifficulty;
+    @BindView(R.id.result_percents) TextView resultPercent;
+    @BindView(R.id.result_button_finish) Button resultFinishButton;
 
     public static void start(Context context, Integer id) {
         Intent intent = new Intent(context, ResultActivity.class);
@@ -52,15 +47,22 @@ public class ResultActivity extends AppCompatActivity {
     private void initResultViewModel() {
         mResultViewModel.getQuizResults(getIntent().getIntExtra(ID, 0));
         mResultViewModel.quizResultMutableLiveData.observe(this, quizResult -> {
+            resultCategory.setText(quizResult.getQuestions().get(0).getCategory());
+            resultDifficulty.setText(quizResult.getQuestions().get(0).getDifficulty().toUpperCase());
             resultCorrectAnswers.setText(quizResult.getCorrectAnswers() + "/" + quizResult.getQuestions().size());
-            Log.d("ololo", "initResultViewModel: " + quizResult.getCorrectAnswers());
+
+            double stat = (double) quizResult.getCorrectAnswers() * 100.0 /
+                    (double) quizResult.getQuestions().size();
+
+            resultPercent.setText(stat + " %");
+            Log.d("ololo", "initResultViewModel: " + stat);
         });
     }
 
     private void finishResult() {
         resultFinishButton.setOnClickListener(v -> {
             startActivity(new Intent(ResultActivity.this, QuizActivity.class));
-            finish();
+
         });
     }
 }

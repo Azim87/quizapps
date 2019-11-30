@@ -24,7 +24,6 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
     public final static String BOOLEAN = "boolean";
     private List<Questions> mQuestions = new ArrayList<>();
     private OnItemClickListener mListener;
-    private int positionOfAnswer;
 
     public QuizAdapter(OnItemClickListener onItemClick) {
         mListener = onItemClick;
@@ -56,7 +55,6 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
     public List<Questions> getListPosition() {
         return mQuestions;
     }
-
 
     public class QuizViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         OnItemClickListener listener;
@@ -126,10 +124,10 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         }
 
         private void showMultipleQuestion(Questions questions) {
-            mTextQuizQuestionAnswer1.setText(questions.getAnswers().get(0));
-            mTextQuizQuestionAnswer2.setText(questions.getAnswers().get(1));
-            mTextQuizQuestionAnswer3.setText(questions.getAnswers().get(2));
-            mTextQuizQuestionAnswer4.setText(questions.getAnswers().get(3));
+            mTextQuizQuestionAnswer1.setText(Html.fromHtml(questions.getAnswers().get(0)));
+            mTextQuizQuestionAnswer2.setText(Html.fromHtml(questions.getAnswers().get(1)));
+            mTextQuizQuestionAnswer3.setText(Html.fromHtml(questions.getAnswers().get(2)));
+            mTextQuizQuestionAnswer4.setText(Html.fromHtml(questions.getAnswers().get(3)));
         }
 
         @Override
