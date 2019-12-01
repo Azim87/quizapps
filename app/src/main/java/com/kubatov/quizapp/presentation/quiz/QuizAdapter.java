@@ -4,6 +4,7 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,9 +20,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder> {
-    public final static String MULTIPLE = "multiple";
-    public final static String TRUE = "true";
-    public final static String BOOLEAN = "boolean";
+    private final static String TRUE = "true";
     private List<Questions> mQuestions = new ArrayList<>();
     private OnItemClickListener mListener;
 
@@ -57,7 +56,9 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
     }
 
     public class QuizViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        OnItemClickListener listener;
+        private final static String YES = "yes";
+        private final static String NO = "no";
+        private OnItemClickListener listener;
 
         @BindView(R.id.quiz_question)
         TextView mTextQuizQuestion;
@@ -73,6 +74,8 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         TextView mTextQuizQuestionBoolean1;
         @BindView(R.id.quiz_question_boolean_2)
         TextView mTextQuizQuestionBoolean2;
+        @BindView(R.id.container_boolean) LinearLayout mContainerBoolean;
+        @BindView(R.id.container_multiple) LinearLayout mContainerMultiple;
 
 
         public QuizViewHolder(@NonNull View itemView, QuizAdapter.OnItemClickListener listener) {
@@ -90,37 +93,29 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
 
         public void onBind(Questions questions) {
             mTextQuizQuestion.setText(Html.fromHtml(questions.getQuestion()));
-            if (questions.getType().equals(MULTIPLE)) {
+            if (questions.getType().equals("multiple")) {
                 showMultipleQuestion(questions);
                 hideQuestionBoolean();
             } else {
                 hideQuestionMultiple();
             }
-            if (questions.getType().equals(BOOLEAN)) {
+            if (questions.getType().equals("boolean")) {
                 if (questions.getCorrectAnswers().equals(TRUE)) {
-                    mTextQuizQuestionBoolean1.setText("True");
+                    mTextQuizQuestionBoolean1.setText(YES);
                 } else {
-                    mTextQuizQuestionBoolean2.setText("No");
+                    mTextQuizQuestionBoolean2.setText(NO);
                 }
             }
         }
 
         private void hideQuestionBoolean() {
-            mTextQuizQuestionBoolean1.setVisibility(View.INVISIBLE);
-            mTextQuizQuestionBoolean2.setVisibility(View.INVISIBLE);
-            mTextQuizQuestionAnswer1.setVisibility(View.VISIBLE);
-            mTextQuizQuestionAnswer2.setVisibility(View.VISIBLE);
-            mTextQuizQuestionAnswer3.setVisibility(View.VISIBLE);
-            mTextQuizQuestionAnswer4.setVisibility(View.VISIBLE);
+            mContainerBoolean.setVisibility(View.INVISIBLE);
+            mContainerMultiple.setVisibility(View.VISIBLE);
         }
 
         private void hideQuestionMultiple() {
-            mTextQuizQuestionBoolean1.setVisibility(View.VISIBLE);
-            mTextQuizQuestionBoolean2.setVisibility(View.VISIBLE);
-            mTextQuizQuestionAnswer1.setVisibility(View.INVISIBLE);
-            mTextQuizQuestionAnswer2.setVisibility(View.INVISIBLE);
-            mTextQuizQuestionAnswer3.setVisibility(View.INVISIBLE);
-            mTextQuizQuestionAnswer4.setVisibility(View.INVISIBLE);
+            mContainerBoolean.setVisibility(View.VISIBLE);
+            mContainerMultiple.setVisibility(View.INVISIBLE);
         }
 
         private void showMultipleQuestion(Questions questions) {

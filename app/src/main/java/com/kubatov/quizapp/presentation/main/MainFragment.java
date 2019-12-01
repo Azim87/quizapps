@@ -3,7 +3,6 @@ package com.kubatov.quizapp.presentation.main;
 import android.os.Build;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -99,7 +98,7 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
     }
 
     private void getValueFromSeekBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             mSeekBar.setMin(5);
         }
         mSeekBar.setOnSeekBarChangeListener(new SimpleSeekBarChange() {
@@ -113,9 +112,8 @@ public class MainFragment extends CoreFragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
         int categoryId = 0;
-        if (spinnerCategory.getSelectedIndex() != 0){
+        if (spinnerCategory.getSelectedIndex() != 0) {
             categoryId = spinnerCategory.getSelectedIndex() + 8;
         }
 

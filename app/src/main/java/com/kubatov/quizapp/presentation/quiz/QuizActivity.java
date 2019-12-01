@@ -75,7 +75,7 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
 
         String difficulty = intent.getStringExtra(DIFF_DIFFICULT).toLowerCase();
         if (difficulty.equals("any difficulty")){
-            difficulty = "";
+            difficulty = null;
         }
         mQuizViewModel.initViews(amount, category, difficulty);
     }
@@ -89,13 +89,9 @@ public class QuizActivity extends AppCompatActivity implements QuizAdapter.OnIte
             skipButton.setVisibility(View.VISIBLE);
         });
 
-        mQuizViewModel.openResultEvent.observe(this, new Observer<Integer>() {
-            @Override
-
-            public void onChanged(Integer id) {
-                finish();
-                ResultActivity.start(QuizActivity.this, id);
-            }
+        mQuizViewModel.openResultEvent.observe(this, id -> {
+            finish();
+            ResultActivity.start(QuizActivity.this, id);
         });
 
         mQuizViewModel.finishEvent.observe(this, aVoid -> finish());

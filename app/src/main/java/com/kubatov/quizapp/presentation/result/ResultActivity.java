@@ -48,21 +48,15 @@ public class ResultActivity extends AppCompatActivity {
         mResultViewModel.getQuizResults(getIntent().getIntExtra(ID, 0));
         mResultViewModel.quizResultMutableLiveData.observe(this, quizResult -> {
             resultCategory.setText(quizResult.getQuestions().get(0).getCategory());
-            resultDifficulty.setText(quizResult.getQuestions().get(0).getDifficulty().toUpperCase());
+            resultDifficulty.setText(String.valueOf(quizResult.getQuestions().get(0).getDifficulty()));
             resultCorrectAnswers.setText(quizResult.getCorrectAnswers() + "/" + quizResult.getQuestions().size());
 
-            double stat = (double) quizResult.getCorrectAnswers() * 100.0 /
-                    (double) quizResult.getQuestions().size();
-
+            int stat =  quizResult.getCorrectAnswers() * 100 / quizResult.getQuestions().size();
             resultPercent.setText(stat + " %");
-            Log.d("ololo", "initResultViewModel: " + stat);
         });
     }
 
     private void finishResult() {
-        resultFinishButton.setOnClickListener(v -> {
-            startActivity(new Intent(ResultActivity.this, QuizActivity.class));
-
-        });
+        resultFinishButton.setOnClickListener(v -> finish());
     }
 }

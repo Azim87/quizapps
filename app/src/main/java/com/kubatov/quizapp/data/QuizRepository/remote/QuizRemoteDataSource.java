@@ -1,5 +1,8 @@
 package com.kubatov.quizapp.data.QuizRepository.remote;
 
+
+import android.util.Log;
+
 import com.kubatov.quizapp.data.QuizRepository.IQuizRepository;
 import com.kubatov.quizapp.data.QuizRepository.remote.model.QuestionResponse;
 import com.kubatov.quizapp.model.Questions;
@@ -38,7 +41,6 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
     public void getQuestions(Integer amount, Integer category, String difficulty, IQuizRepository.OnQuizCallBack onQuizCallBack) {
 
         Call<QuestionResponse> callQuestions = service.getQuestions(amount, category, difficulty);
-
         callQuestions.enqueue(new Callback<QuestionResponse>() {
             @Override
             public void onResponse(Call<QuestionResponse> call, Response<QuestionResponse> response) {
@@ -59,7 +61,7 @@ public class QuizRemoteDataSource implements IQuizRemoteDataSource {
 
             @Override
             public void onFailure(Call<QuestionResponse> call, Throwable t) {
-                onQuizCallBack.onFailure(new Exception(t));
+                onQuizCallBack.onFailure(new Exception(t.getMessage()));
             }
         });
     }

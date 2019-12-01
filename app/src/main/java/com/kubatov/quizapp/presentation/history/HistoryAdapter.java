@@ -69,7 +69,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         public void onBind(ShortQuizResult shortQuizResult) {
             mCategoryTextView.setText(shortQuizResult.getCategory() );
             mAnswersTextView.setText("Correct answers: " + shortQuizResult.getCorrectAnswers() + "/" + shortQuizResult.getQuestionsAmount());
-            mDifficultTextView.setText(shortQuizResult.getDifficulty().toUpperCase());
+            mDifficultTextView.setText(String.valueOf(shortQuizResult.getDifficulty()));
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MMM yyyy HH:mm");
             mTimeTextView.setText(simpleDateFormat.format(shortQuizResult.getCreatedAt()));
         }
