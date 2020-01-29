@@ -10,9 +10,9 @@ public class Questions {
 
     private String category;
 
-    private String type;
+    private EType type;
 
-    private String difficulty;
+    private EDifficulty difficulty;
 
     private String question;
 
@@ -27,7 +27,7 @@ public class Questions {
     @Nullable
     private Integer selectedAnswerPosition = null;
 
-    public Questions(String category, String type, String difficulty, String question, String correctAnswers, List<String> incorrectAnswers, int selectedAnswerPosition) {
+    public Questions(String category, EType type, EDifficulty difficulty, String question, String correctAnswers, List<String> incorrectAnswers, int selectedAnswerPosition) {
         this.category = category;
         this.type = type;
         this.difficulty = difficulty;
@@ -45,11 +45,11 @@ public class Questions {
         return category;
     }
 
-    public String getType() {
+    public EType getType() {
         return type;
     }
 
-    public String getDifficulty() {
+    public EDifficulty getDifficulty() {
         return difficulty;
     }
 
@@ -69,11 +69,11 @@ public class Questions {
         this.category = category;
     }
 
-    public void setType(String type) {
+    public void setType(EType type) {
         this.type = type;
     }
 
-    public void setDifficulty(String difficulty) {
+    public void setDifficulty(EDifficulty difficulty) {
         this.difficulty = difficulty;
     }
 

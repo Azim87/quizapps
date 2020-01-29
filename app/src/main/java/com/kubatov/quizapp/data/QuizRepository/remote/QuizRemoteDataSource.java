@@ -1,8 +1,6 @@
 package com.kubatov.quizapp.data.QuizRepository.remote;
 
 
-import android.util.Log;
-
 import com.kubatov.quizapp.data.QuizRepository.IQuizRepository;
 import com.kubatov.quizapp.data.QuizRepository.remote.model.QuestionResponse;
 import com.kubatov.quizapp.model.Questions;

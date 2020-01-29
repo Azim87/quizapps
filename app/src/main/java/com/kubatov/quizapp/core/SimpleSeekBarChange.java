@@ -2,7 +2,7 @@ package com.kubatov.quizapp.core;
 
 import android.widget.SeekBar;
 
-public  class SimpleSeekBarChange implements SeekBar.OnSeekBarChangeListener{
+public class SimpleSeekBarChange implements SeekBar.OnSeekBarChangeListener{
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {}

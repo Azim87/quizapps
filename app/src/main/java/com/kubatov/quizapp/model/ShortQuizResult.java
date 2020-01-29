@@ -9,10 +9,10 @@ public class ShortQuizResult {
     private int correctAnswers;
     private Date createdAt;
     private String category;
-    private String difficulty;
+    private EDifficulty difficulty;
 
     public ShortQuizResult(int id, int questionsAmount, int correctAnswers,
-                           Date createdAt, String category, String difficulty) {
+                           Date createdAt, String category, EDifficulty difficulty) {
         this.id = id;
         this.questionsAmount = questionsAmount;
         this.correctAnswers = correctAnswers;
@@ -62,11 +62,11 @@ public class ShortQuizResult {
         this.category = category;
     }
 
-    public String getDifficulty() {
+    public EDifficulty getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(String difficulty) {
+    public void setDifficulty(EDifficulty difficulty) {
         this.difficulty = difficulty;
     }
 }

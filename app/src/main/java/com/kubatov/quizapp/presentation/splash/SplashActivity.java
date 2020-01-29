@@ -9,7 +9,7 @@ import com.kubatov.quizapp.R;
 import com.kubatov.quizapp.presentation.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
-    private long mills = 1000;
+    private long mills = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void setSplashTime() {
-        new CountDownTimer(mills, 1000) {
+        new CountDownTimer(mills, 100) {
 
             @Override
             public void onTick(long millisUntilFinished) {

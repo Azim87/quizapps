@@ -3,7 +3,6 @@ package com.kubatov.quizapp.presentation.result;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.kubatov.quizapp.R;
-import com.kubatov.quizapp.presentation.quiz.QuizActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,11 +19,16 @@ public class ResultActivity extends AppCompatActivity {
     private static String ID = "id";
     private ResultViewModel mResultViewModel;
 
-    @BindView(R.id.result_category) TextView resultCategory;
-    @BindView(R.id.result_ans) TextView resultCorrectAnswers;
-    @BindView(R.id.result_all) TextView resultDifficulty;
-    @BindView(R.id.result_percents) TextView resultPercent;
-    @BindView(R.id.result_button_finish) Button resultFinishButton;
+    @BindView(R.id.result_category)
+    TextView resultCategory;
+    @BindView(R.id.result_ans)
+    TextView resultCorrectAnswers;
+    @BindView(R.id.result_all)
+    TextView resultDifficulty;
+    @BindView(R.id.result_percents)
+    TextView resultPercent;
+    @BindView(R.id.result_button_finish)
+    Button resultFinishButton;
 
     public static void start(Context context, Integer id) {
         Intent intent = new Intent(context, ResultActivity.class);
@@ -43,7 +46,6 @@ public class ResultActivity extends AppCompatActivity {
         finishResult();
     }
 
-
     private void initResultViewModel() {
         mResultViewModel.getQuizResults(getIntent().getIntExtra(ID, 0));
         mResultViewModel.quizResultMutableLiveData.observe(this, quizResult -> {
@@ -51,7 +53,7 @@ public class ResultActivity extends AppCompatActivity {
             resultDifficulty.setText(String.valueOf(quizResult.getQuestions().get(0).getDifficulty()));
             resultCorrectAnswers.setText(quizResult.getCorrectAnswers() + "/" + quizResult.getQuestions().size());
 
-            int stat =  quizResult.getCorrectAnswers() * 100 / quizResult.getQuestions().size();
+            int stat = quizResult.getCorrectAnswers() * 100 / quizResult.getQuestions().size();
             resultPercent.setText(stat + " %");
         });
     }

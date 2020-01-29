@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kubatov.quizapp.R;
+import com.kubatov.quizapp.model.EType;
 import com.kubatov.quizapp.model.Questions;
 
 import java.util.ArrayList;
@@ -60,25 +61,18 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         private final static String NO = "no";
         private OnItemClickListener listener;
 
-        @BindView(R.id.quiz_question)
-        TextView mTextQuizQuestion;
-        @BindView(R.id.quiz_question_answer_1)
-        TextView mTextQuizQuestionAnswer1;
-        @BindView(R.id.quiz_question_answer_2)
-        TextView mTextQuizQuestionAnswer2;
-        @BindView(R.id.quiz_question_answer_3)
-        TextView mTextQuizQuestionAnswer3;
-        @BindView(R.id.quiz_question_answer_4)
-        TextView mTextQuizQuestionAnswer4;
-        @BindView(R.id.quiz_question_boolean_1)
-        TextView mTextQuizQuestionBoolean1;
-        @BindView(R.id.quiz_question_boolean_2)
-        TextView mTextQuizQuestionBoolean2;
+        @BindView(R.id.quiz_question) TextView mTextQuizQuestion;
+        @BindView(R.id.quiz_question_answer_1) TextView mTextQuizQuestionAnswer1;
+        @BindView(R.id.quiz_question_answer_2) TextView mTextQuizQuestionAnswer2;
+        @BindView(R.id.quiz_question_answer_3) TextView mTextQuizQuestionAnswer3;
+        @BindView(R.id.quiz_question_answer_4) TextView mTextQuizQuestionAnswer4;
+        @BindView(R.id.quiz_question_boolean_1) TextView mTextQuizQuestionBoolean1;
+        @BindView(R.id.quiz_question_boolean_2) TextView mTextQuizQuestionBoolean2;
         @BindView(R.id.container_boolean) LinearLayout mContainerBoolean;
         @BindView(R.id.container_multiple) LinearLayout mContainerMultiple;
 
 
-        public QuizViewHolder(@NonNull View itemView, QuizAdapter.OnItemClickListener listener) {
+        private QuizViewHolder(@NonNull View itemView, QuizAdapter.OnItemClickListener listener) {
             super(itemView);
             this.listener = listener;
             ButterKnife.bind(this, itemView);
@@ -91,19 +85,19 @@ public class QuizAdapter extends RecyclerView.Adapter<QuizAdapter.QuizViewHolder
         }
 
 
-        public void onBind(Questions questions) {
+        private void onBind(Questions questions) {
             mTextQuizQuestion.setText(Html.fromHtml(questions.getQuestion()));
-            if (questions.getType().equals("multiple")) {
+            if (questions.getType().equals(EType.MULTIPLE)) {
                 showMultipleQuestion(questions);
                 hideQuestionBoolean();
             } else {
                 hideQuestionMultiple();
             }
-            if (questions.getType().equals("boolean")) {
+            if (questions.getType().equals(EType.BOOLEAN)) {
                 if (questions.getCorrectAnswers().equals(TRUE)) {
-                    mTextQuizQuestionBoolean1.setText(YES);
+                    mTextQuizQuestionBoolean1.setText("Yes");
                 } else {
-                    mTextQuizQuestionBoolean2.setText(NO);
+                    mTextQuizQuestionBoolean2.setText("No");
                 }
             }
         }
